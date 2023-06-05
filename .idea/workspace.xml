@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="113335f9-ff29-439c-82f8-7b85272530bc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-boot/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-boot/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-boot/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-boot/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-boot/src/main/java/com/zzy/malllearningboot/MallLearningBootApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-boot/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-boot/src/test/java/com/zzy/malllearningboot/MallLearningBootApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/MallLearningMybatisApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/common/api/CommonPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/common/api/CommonResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/common/api/IErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/common/api/ResultCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/config/MybatisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/controller/UmsAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/dao/UmsAdminDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/dao/UmsResourceCategoryDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/dao/UmsResourceDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/domain/UmsResourceCategoryExt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/domain/UmsResourceExt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/dto/UmsAdminRoleCountDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/CommentGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/Generator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/mapper/PmsBrandMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/mapper/PmsProductAttributeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/mapper/PmsProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/mapper/UmsAdminMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/model/PmsBrand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/model/PmsBrandExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/model/PmsProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/model/PmsProductAttribute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/model/PmsProductAttributeExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/model/PmsProductExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/model/UmsAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/mbg/model/UmsAdminExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/model/UmsAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/model/UmsResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/model/UmsResourceCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/service/UmsAdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/service/UmsResourceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/service/impl/UmsAdminServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/java/com/zzy/malllearningmybatis/service/impl/UmsResourceServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/com/zzy/malllearningmybatis/mbg/mapper/PmsBrandMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/com/zzy/malllearningmybatis/mbg/mapper/PmsProductAttributeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/com/zzy/malllearningmybatis/mbg/mapper/PmsProductMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/com/zzy/malllearningmybatis/mbg/mapper/UmsAdminMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/dao/UmsAdminDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/dao/UmsResourceCategoryDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/dao/UmsResourceDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/generator.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-mybatis/src/test/java/com/zzy/malllearningmybatis/MallLearningMybatisApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="spring-beans.schema" />
+        <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\apache-maven-3.6.3\reporsitory" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2QQ11BTvaMFa0Wat4qSHkbOaqh4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "F:/idea_proj/mall_learning",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "show.run.dashboard.notification": "false",
+    "spring.configuration.checksum": "409a2933d801a2633301ae9bfb37c73f"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\idea_proj\mall_learning\mall-learning-mybatis\src\main\resources\dao" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MallLearningMybatisApplication">
+    <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zzy.malllearningmybatis.mbg.Generator" />
+      <module name="mall-learning-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zzy.malllearningmybatis.mbg.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MallLearningMybatisApplicationTests.testPageSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mall-learning-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zzy.malllearningmybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zzy.malllearningmybatis" />
+      <option name="MAIN_CLASS_NAME" value="com.zzy.malllearningmybatis.MallLearningMybatisApplicationTests" />
+      <option name="METHOD_NAME" value="testPageSearch" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MallLearningMybatisApplicationTests.testSelectUmsResourceExtByCategoryId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mall-learning-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zzy.malllearningmybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zzy.malllearningmybatis" />
+      <option name="MAIN_CLASS_NAME" value="com.zzy.malllearningmybatis.MallLearningMybatisApplicationTests" />
+      <option name="METHOD_NAME" value="testSelectUmsResourceExtByCategoryId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MallLearningMybatisApplicationTests.testSelectUmsResourceExtByCategoryId2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mall-learning-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zzy.malllearningmybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zzy.malllearningmybatis" />
+      <option name="MAIN_CLASS_NAME" value="com.zzy.malllearningmybatis.MallLearningMybatisApplicationTests" />
+      <option name="METHOD_NAME" value="testSelectUmsResourceExtByCategoryId2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MallLearningMybatisApplicationTests.testSelectUmsResourceExtByResourceId2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mall-learning-mybatis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zzy.malllearningmybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zzy.malllearningmybatis" />
+      <option name="MAIN_CLASS_NAME" value="com.zzy.malllearningmybatis.MallLearningMybatisApplicationTests" />
+      <option name="METHOD_NAME" value="testSelectUmsResourceExtByResourceId2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MallLearningBootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="mall-learning-boot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zzy.malllearningboot.MallLearningBootApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MallLearningMybatisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="mall-learning-mybatis" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zzy.malllearningmybatis.MallLearningMybatisApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Generator" />
+        <item itemvalue="JUnit.MallLearningMybatisApplicationTests.testPageSearch" />
+        <item itemvalue="JUnit.MallLearningMybatisApplicationTests.testSelectUmsResourceExtByCategoryId" />
+        <item itemvalue="JUnit.MallLearningMybatisApplicationTests.testSelectUmsResourceExtByCategoryId2" />
+        <item itemvalue="JUnit.MallLearningMybatisApplicationTests.testSelectUmsResourceExtByResourceId2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="113335f9-ff29-439c-82f8-7b85272530bc" name="Changes" comment="" />
+      <created>1685270775497</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685270775497</updated>
+      <workItem from="1685270776906" duration="2938000" />
+      <workItem from="1685452457071" duration="13964000" />
+      <workItem from="1685554271132" duration="99000" />
+      <workItem from="1685554380128" duration="17886000" />
+      <workItem from="1685669023392" duration="47339000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

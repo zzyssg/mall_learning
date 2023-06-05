@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="generator.properties"/>
+    <context id="MyBatisContext" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!--基本属性配置-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!--插件配置-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <commentGenerator type="com.zzy.malllearningmybatis.mbg.CommentGenerator">
+            <property name="addRemarkComments" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接信息-->
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.connectionUrl}"
+                        password="${jdbc.password}"
+                        userId="${jdbc.userId}"
+        >
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!--生成信息-->
+        <javaModelGenerator targetPackage="com.zzy.malllearningmybatis.mbg.model"
+                            targetProject="mall-learning-mybatis\src\main\java"/>
+        <sqlMapGenerator targetPackage="com.zzy.malllearningmybatis.mbg.mapper"
+                         targetProject="mall-learning-mybatis\src\main\resources"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zzy.malllearningmybatis.mbg.mapper"
+                             targetProject="mall-learning-mybatis\src\main\java"/>
+        <table tableName="pms_brand">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true"/>
+        </table>
+        <table tableName="pms_product">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true"/>
+        </table>
+        <table tableName="pms_product_attribute">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true"/>
+        </table>
+        <table tableName="ums_admin">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
