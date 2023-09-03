@@ -14,6 +14,7 @@
     <modules>
         <module>mall-learning-boot</module>
         <module>mall-learning-mybatis</module>
+        <module>mall-learning-bootis</module>
     </modules>
 
     <!--集成父项目，管理所有依赖-->
@@ -35,6 +36,7 @@
         <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
         <hutool.version>5.8.15</hutool.version>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
 
 
