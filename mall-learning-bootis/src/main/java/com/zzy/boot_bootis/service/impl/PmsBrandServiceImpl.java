@@ -1,11 +1,14 @@
 package com.zzy.boot_bootis.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.zzy.boot_bootis.config.RedisConfig;
 import com.zzy.boot_bootis.mbg.mapper.PmsBrandMapper;
 import com.zzy.boot_bootis.mbg.model.PmsBrand;
 import com.zzy.boot_bootis.mbg.model.PmsBrandExample;
 import com.zzy.boot_bootis.service.PmsBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +39,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         return pmsBrandMapper.deleteByPrimaryKey(id);
     }
 
+    @CacheEvict(value="mall",key = "'aaaa'+#id")
     @Override
     public int updateBrand(Long id, PmsBrand brand) {
         brand.setId(id);
@@ -48,6 +52,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         return pmsBrandMapper.selectByExample(new PmsBrandExample());
     }
 
+    @Cacheable(value = "mall",key = "'aaa'+#id",unless = "#result==null")
     @Override
     public PmsBrand getBrand(Long id) {
         return pmsBrandMapper.selectByPrimaryKey(id);

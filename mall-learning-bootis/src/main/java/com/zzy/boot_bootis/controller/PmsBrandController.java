@@ -2,12 +2,17 @@ package com.zzy.boot_bootis.controller;
 
 import com.zzy.boot_bootis.common.api.CommonPage;
 import com.zzy.boot_bootis.common.api.CommonResult;
-import com.zzy.boot_bootis.common.api.ResultCode;
+
 import com.zzy.boot_bootis.mbg.model.PmsBrand;
 import com.zzy.boot_bootis.service.PmsBrandService;
+import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +23,8 @@ import java.util.List;
  * @Date 2023/9/3 16:57
  * @Version 1.0
  */
+@Api(tags="PmsBrandController")
+@Tag(name="PmsBrandController",description = "管理品牌的一些方法")
 @RestController
 @RequestMapping("/brand")
 public class PmsBrandController {
@@ -27,13 +34,17 @@ public class PmsBrandController {
 
     private static final Logger Logger = LoggerFactory.getLogger(PmsBrandController.class);
 
+    @ApiOperation(value = "查询所有品牌")
     @RequestMapping(value="/listAll",method= RequestMethod.GET)
+    @PreAuthorize("hasAuthority('brand:listAll')")
     public CommonResult<List<PmsBrand>> getBrandList() {
         List<PmsBrand> pmsBrands = brandService.listAllBrand();
         return CommonResult.success(pmsBrands);
     }
 
+    @ApiOperation(value="创建品牌")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('brand:create')")
     public CommonResult createBrand(@RequestBody PmsBrand pmsBrand) {
 
         CommonResult commonResult;
@@ -48,8 +59,9 @@ public class PmsBrandController {
         return commonResult;
     }
 
-    //brand getById id
+    @ApiOperation(value="更新品牌")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('brand:update')")
     public CommonResult update(@PathVariable("id") Long id, @RequestBody PmsBrand brand) {
 
         CommonResult commonResult;
@@ -64,7 +76,10 @@ public class PmsBrandController {
         return commonResult;
     }
 
+    @ApiOperation(value = "删除品牌")
+    @ApiParam(name="id",value = "根据ID删除品牌",defaultValue = "null",required = true)
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('brand:delete')")
     public CommonResult delete(@PathVariable("id") Long id) {
         CommonResult commonResult;
         int count = brandService.deleteBrand(id);
@@ -78,10 +93,19 @@ public class PmsBrandController {
         return commonResult;
     }
 
-    //listBrand 分页
+    @ApiOperation(value = "分页显示品牌")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum",value = "页数",defaultValue = "1",required = true,dataTypeClass = Integer.class),
+            @ApiImplicitParam(name = "pageSize",value = "每页条数",defaultValue = "3",required = true,dataTypeClass = Integer.class)
+    })
+    @ApiResponses({
+            @ApiResponse(responseCode = "401",description = "未登录或token已过期"),
+            @ApiResponse(responseCode = "403",description = "没有相关权限")
+    })
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('brand:list')")
     public CommonResult listBrand(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-                                  @RequestParam(value = "page",defaultValue = "3") int pageSize) {
+                                  @RequestParam(value = "pageSize",defaultValue = "3") int pageSize) {
         CommonResult commonResult;
         List<PmsBrand> pmsBrands = brandService.listBrand(pageNum, pageSize);
         if (pmsBrands != null && pmsBrands.size() > 0) {
@@ -94,6 +118,7 @@ public class PmsBrandController {
         return commonResult;
     }
 
+    @ApiOperation(value = "根据品牌ID查询品牌")
     @RequestMapping("/getBrand/{id}")
     public CommonResult brand(@PathVariable Long id) {
         CommonResult commonResult;

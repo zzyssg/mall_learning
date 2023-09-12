@@ -37,6 +37,8 @@
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
         <hutool.version>5.8.15</hutool.version>
         <lombok.version>1.18.24</lombok.version>
+        <springfox.version>3.0.0</springfox.version>
+        <jjwt.version>0.9.1</jjwt.version>
     </properties>
 
 

@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113335f9-ff29-439c-82f8-7b85272530bc" name="Changes" comment="till_hutool_to_main">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/BootBootisApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/BootBootisApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/common/api/CommonResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/common/api/CommonResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/PmsBrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/PmsBrandController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/mbg/CommonGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/mbg/CommonGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/mbg/model/PmsBrand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/PmsBrandServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/PmsBrandServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/resources/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,10 +50,12 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2QQ11BTvaMFa0Wat4qSHkbOaqh4" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -66,13 +75,18 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "fileTemplates",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "show.run.dashboard.notification": "false",
     "spring.configuration.checksum": "84a5741be386bc1a44eebd6e864696ea"
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zzy.boot_bootis.config" />
+      <recent name="com.zzy.boot_bootis.domain" />
       <recent name="com.zzy.boot_bootis.common.api" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -210,7 +224,9 @@
       <workItem from="1691735213638" duration="4347000" />
       <workItem from="1692154725126" duration="1661000" />
       <workItem from="1693551004604" duration="3556000" />
-      <workItem from="1693651192795" duration="17211000" />
+      <workItem from="1693651192795" duration="17744000" />
+      <workItem from="1693833170737" duration="9107000" />
+      <workItem from="1694055876762" duration="65733000" />
     </task>
     <task id="LOCAL-00001" summary="till_hutool">
       <created>1685979423846</created>
@@ -247,6 +263,71 @@
     <MESSAGE value="till_hutool" />
     <MESSAGE value="till_hutool_to_main" />
     <option name="LAST_COMMIT_MESSAGE" value="till_hutool_to_main" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/PmsBrandServiceImpl.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/PmsBrandServiceImpl.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/RedisController.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/UmsAdminController.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/RedisController.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/RedisController.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/RedisController.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/RedisController.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/common/utils/JwtTokenUtil.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/RedisServiceImpl.java</url>
+          <line>104</line>
+          <properties class="com.zzy.boot_bootis.service.impl.RedisServiceImpl" method="hSetAll">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="e" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

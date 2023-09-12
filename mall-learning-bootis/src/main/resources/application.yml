@@ -6,4 +6,56 @@ spring:
     url: jdbc:mysql://localhost:3306/mall_tiny?serverTimeZone=Asia/Shanghai&charEncoding=ut-8
     username: root
     password: 116924
+  mvc:
+    pathmatch:
+      #解决swagger3和springboot版本冲突
+      matching-strategy: ant_path_matcher
+  redis:
+    host: localhost #redis 服务器地址
+    port: 6379 #redis服务端口
+    database: 0 #redis数据库索引
+    timeout: 3000ms # 链接超时时间
+    password:
+    lettuce:
+        pool:
+          max-active: 8 # 连接池最大连接数
+          max-idle: 8 # 连接池最大空闲连接数
+          min-idle: 0 # 连接池最小空闲连接数
+          max-wait: -1ms #
 
+redis:
+  key:
+    prefix:
+      authCode: "portal:authCode:"
+    expire:
+      authCode: 120 #验证码超时时间
+
+
+
+
+#开启或者关闭文档显示
+springfox:
+  documentation:
+    enabled: true
+    #线上是否需要开启
+    swagger-ui:
+      enabled: true
+#      base-url: /doc
+
+jwt:
+  tokenHeader: Authorization # 请求头
+  tokenHead: Bearer
+  expiration: 86400 # token过期时间 S
+  secret: mySecret # 秘钥
+
+secure:
+  ignored:
+    urls:
+      - "/swagger-ui/"
+      - "/*.html"
+      - "/favicon.ico"
+      - "/**/*.css"
+      - "/**/*.js"
+      - "/swagger-resources/**"
+      - "/v3/api-docs/**"
+      - "/admin/login"

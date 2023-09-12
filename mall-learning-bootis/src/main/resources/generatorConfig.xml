@@ -34,5 +34,8 @@
         <table tableName="pms_brand">
             <generatedKey column="id" sqlStatement="MySQL" identity="true" />
         </table>
+        <table tableName="ums_admin">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
     </context>
 </generatorConfiguration>

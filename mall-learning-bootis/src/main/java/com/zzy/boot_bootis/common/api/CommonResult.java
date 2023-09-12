@@ -14,6 +14,10 @@ public class CommonResult<T> {
 
     private T data;
 
+    public static <T> CommonResult<T> validateFailed(String message) {
+        return new CommonResult<T>(ResultCode.VALIDATE_FAILED.getCode(), message,null);
+    }
+
     public long getCode() {
         return code;
     }

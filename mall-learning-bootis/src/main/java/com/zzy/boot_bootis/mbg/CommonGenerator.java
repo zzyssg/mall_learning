@@ -9,6 +9,9 @@ import org.mybatis.generator.internal.util.StringUtility;
 
 import java.util.Properties;
 
+/**
+ * @Description 自定义注释器
+ */
 public class CommonGenerator extends DefaultCommentGenerator {
     private boolean addRemarkComments = false;
 
@@ -25,7 +28,12 @@ public class CommonGenerator extends DefaultCommentGenerator {
         String remarks = introspectedColumn.getRemarks();
         //是否添加备注信息
         if (addRemarkComments && StringUtility.stringHasValue(remarks)) {
-            addFieldJavaDoc(field, remarks);
+            if (remarks.contains("\"")) {
+                remarks.replace("\"", "'");
+            }
+//            addFieldJavaDoc(field, remarks);
+            //给model字段添加注释
+            field.addJavaDocLine("@ApiModelProperty(value=\""+remarks+"\")");
         }
 
     }
@@ -39,6 +47,7 @@ public class CommonGenerator extends DefaultCommentGenerator {
             field.addJavaDocLine("*" + remarkLine);
         }
         field.addJavaDocLine("*/");
+
     }
 
 
