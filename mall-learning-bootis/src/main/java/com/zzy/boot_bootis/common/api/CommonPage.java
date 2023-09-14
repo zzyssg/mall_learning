@@ -1,6 +1,7 @@
 package com.zzy.boot_bootis.common.api;
 
 import com.github.pagehelper.PageInfo;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -36,6 +37,25 @@ public class CommonPage<T> {
         result.setList(pageInfo.getList());
         return result;
     }
+
+    /**
+     * 将SpringData分页后的list转为分页信息
+     *
+     * @return
+     */
+    public static <T> CommonPage<T> restPage(Page<T> pageInfo) {
+        CommonPage<T> result = new CommonPage<>();
+        result.setTotalPage(result.totalPage);
+        result.setList(pageInfo.getContent());
+        result.setPageNum(pageInfo.getNumber());
+        result.setPageSize(pageInfo.getSize());
+        result.setTotalPage(pageInfo.getTotalPages());
+        result.setTotal(pageInfo.getTotalElements());
+        return result;
+    }
+
+
+
 
     public Integer getPageNum() {
         return pageNum;
