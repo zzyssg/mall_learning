@@ -6,6 +6,10 @@ spring:
     elasticsearch:
       repositories:
         enabled: true #自动为仓库接口生成实现类
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mall-port #mongodb链接的数据库
   elasticsearch:
     uris: http://localhost:9200  #es的主机及端口
   datasource:
@@ -28,6 +32,10 @@ spring:
           max-idle: 8 # 连接池最大空闲连接数
           min-idle: 0 # 连接池最小空闲连接数
           max-wait: -1ms #
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 10MB
 
 mybatis:
   mapper-locations:
@@ -71,3 +79,9 @@ secure:
       - "/swagger-resources/**"
       - "/v3/api-docs/**"
       - "/admin/login"
+
+minio:
+  endpoint: http://localhost:9000 #minio服务
+  bucketName: mall
+  accessKey: minioadmin #访问的key
+  secretKey: minioadmin #访问秘钥
