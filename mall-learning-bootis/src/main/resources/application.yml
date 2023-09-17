@@ -36,6 +36,14 @@ spring:
     multipart:
       enabled: true #开启文件上传
       max-file-size: 10MB
+  rabbitmq:
+    host: localhost
+    port: 5672
+    password: mall
+    username: mall
+    virtual-host: /mall
+    publisher-returns: true
+    publisher-confirm-type: simple
 
 mybatis:
   mapper-locations:

@@ -7,9 +7,7 @@
     <list default="true" id="113335f9-ff29-439c-82f8-7b85272530bc" name="Changes" comment="till_hutool_to_main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-learning-bootis/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/nosql/elasticsearch/repository/EsProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/nosql/elasticsearch/repository/EsProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +41,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2QQ11BTvaMFa0Wat4qSHkbOaqh4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -231,7 +229,8 @@
       <workItem from="1693833170737" duration="9107000" />
       <workItem from="1694055876762" duration="66009000" />
       <workItem from="1694658756520" duration="16981000" />
-      <workItem from="1694868162409" duration="10413000" />
+      <workItem from="1694868162409" duration="14452000" />
+      <workItem from="1694965179326" duration="7869000" />
     </task>
     <task id="LOCAL-00001" summary="till_hutool">
       <created>1685979423846</created>
@@ -316,6 +315,21 @@
           <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/EsProductController.java</url>
           <line>38</line>
           <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/MinioController.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/MinioController.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/controller/MinioController.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/RedisServiceImpl.java</url>
