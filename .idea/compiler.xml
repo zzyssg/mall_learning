@@ -10,6 +10,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mall-learning-bootis" />
+        <module name="mall-admin" />
         <module name="mall-learning-boot" />
         <module name="mall-learning-mybatis" />
       </profile>
@@ -18,6 +19,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mall-admin" options="-parameters" />
       <module name="mall-learning-boot" options="-parameters" />
       <module name="mall-learning-bootis" options="-parameters" />
       <module name="mall-learning-mybatis" options="-parameters" />

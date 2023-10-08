@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties resource="generator.properties"/>
+    <context id="MySqlContext" defaultModelType="flat" targetRuntime="Mybatis3">
+        <!--自动识别数据库关键字-->
+<!--        <property name="autoDelimitKeywords" value="false"/>-->
+<!--        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>-->
+<!--        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>-->
+        <!--数据库用于指明数据库对象的符号-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <commentGenerator type="com.zzy.malladmin.common.CommentGenerator">
+            <property name="addRemarkComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--必须有，链接数据库-->
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.connectionURL}"
+                        userId="${jdbc.userId}"
+                        password="${jdbc.password}">
+            <!-- 解决mysql驱动升级到8.0后不生成指定数据库代码的问题 -->
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="com.zzy.malladmin.mbg.model" targetProject="mall-admin\src\main\java"/>
+        <sqlMapGenerator targetPackage="com.zzy.malladmin.mbg.mapper" targetProject="mall-admin\src\main\resources"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zzy.malladmin.mbg.mapper" targetProject="mall-admin\src\main\java" />
+
+        <!--必须有，创建model和mapper的源 table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写-->
+        <table tableName="ums_admin">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
+        <table tableName="ums_role">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
+        <table tableName="ums_menu">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
+        <table tableName="ums_resource">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>
