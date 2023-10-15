@@ -5,12 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113335f9-ff29-439c-82f8-7b85272530bc" name="Changes" comment="till_hutool_to_main">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsRoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/dao/UmsRoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/dao/UmsRoleDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsAdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsAdminMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsMenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsMenuMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsResourceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsResourceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsRoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsRoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/UmsAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/UmsAdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/UmsRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/UmsRoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsAdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsAdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsRoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsRoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/resources/dao/UmsRoleDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/resources/dao/UmsRoleDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/resources/generatorConfig.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +35,7 @@
         <option value="FxmlFile" />
         <option value="spring-beans.schema" />
         <option value="Enum" />
+        <option value="Kotlin File" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -65,41 +75,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "F:/idea_proj/mall_learning/mall-admin/src/main/resources/dao",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.archetype.catalogs",
-    "show.run.dashboard.notification": "false",
-    "spring.configuration.checksum": "6c3b2d1937ae3e114f4b2fab8f60192f"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/idea_proj/mall_learning/mall-admin/src/main/resources/dao&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.archetype.catalogs&quot;,
+    &quot;show.run.dashboard.notification&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;6c3b2d1937ae3e114f4b2fab8f60192f&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.zzy.malladmin.common" />
-      <recent name="com.zzy.malladmin.dao" />
+      <recent name="com.zzy.malladmin.service" />
       <recent name="com.zzy.malladmin.dto" />
       <recent name="com.zzy.malladmin.model" />
-      <recent name="com.zzy.boot_bootis.domain" />
+      <recent name="com.zzy.malladmin.dao" />
+      <recent name="com.zzy.malladmin.common" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\idea_proj\mall_learning\mall-admin\src\main\resources\dao" />
@@ -114,7 +124,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MallAdminApplication">
+  <component name="RunManager" selected="Application.com.zzy.malladmin.common.Generator">
     <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zzy.malllearningmybatis.mbg.Generator" />
       <module name="mall-learning-mybatis" />
@@ -264,7 +274,10 @@
       <workItem from="1695714547566" duration="9090000" />
       <workItem from="1695864489826" duration="17993000" />
       <workItem from="1695932079756" duration="19938000" />
-      <workItem from="1696517137065" duration="33393000" />
+      <workItem from="1696517137065" duration="33909000" />
+      <workItem from="1696819914305" duration="6773000" />
+      <workItem from="1697182499868" duration="20068000" />
+      <workItem from="1697353658666" duration="11623000" />
     </task>
     <task id="LOCAL-00001" summary="till_hutool">
       <created>1685979423846</created>
@@ -373,6 +386,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/UmsMenuService.java</url>
+          <line>29</line>
+          <properties class="com.zzy.malladmin.service.UmsMenuService" method="list">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />

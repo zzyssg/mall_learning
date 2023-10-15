@@ -4,27 +4,29 @@ import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.zzy.malladmin.common.JwtTokenUtil;
 import com.zzy.malladmin.common.UmsAdminDetails;
+import com.zzy.malladmin.dao.UmsAdminDao;
 import com.zzy.malladmin.dao.UmsAdminRoleRelationDao;
+import com.zzy.malladmin.dao.UmsRoleDao;
 import com.zzy.malladmin.dto.UmsAdminLoginParam;
+import com.zzy.malladmin.dto.UpdatePasswordParam;
 import com.zzy.malladmin.exception.Assert;
 import com.zzy.malladmin.mbg.mapper.UmsAdminMapper;
-import com.zzy.malladmin.mbg.model.UmsAdmin;
-import com.zzy.malladmin.mbg.model.UmsAdminExample;
-import com.zzy.malladmin.mbg.model.UmsResource;
+import com.zzy.malladmin.mbg.mapper.UmsAdminRoleRelationMapper;
+import com.zzy.malladmin.mbg.model.*;
+import com.zzy.malladmin.model.UmsAdminRoleRelation;
 import com.zzy.malladmin.service.UmsAdminService;
 import com.zzy.malladmin.service.UmsRoleService;
-import org.apache.tomcat.util.json.Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,10 +49,19 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     UmsAdminMapper umsAdminMapper;
 
     @Autowired
+    UmsAdminDao umsAdminDao;
+
+    @Autowired
     UmsRoleService umsRoleService;
 
     @Autowired
     UmsAdminRoleRelationDao adminRoleRelationDao;
+
+    @Autowired
+    UmsAdminRoleRelationMapper umsAdminRoleRelationMapper;
+
+    @Autowired
+    UmsRoleDao umsRoleDao;
 
     @Override
     public List<UmsAdmin> list(String keywords, Integer pageNum, Integer pageSize) {
@@ -113,6 +124,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      * 通过账号查看是否已经注册，若已经注册，返回约定的信息-1
      * 若未注册，设置加密密码、时间、状态值等需要初始化的内容
      * 调用mapper方法，向库中新增数据
+     *
      * @param umsAdmin
      * @return
      */
@@ -145,9 +157,10 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      * 通过类中方法使用账号从数据库中获取加密的密码，同时调用passEncoder的matches(加密前，加密后)，判断密码是否正确
      * 设置上下文:将账号密码authentication放入到到上下文中
      * 调用JwtTokenUtil的generate方法，生成token（
-     *                          需要：过期时间、claims、secret
-     *                          生成token需要调用Jwts.builder传入claims：账号、创建时间，过期时间-使用有效期和当前时间、以及secret-配置文件、加密方法。）
+     * 需要：过期时间、claims、secret
+     * 生成token需要调用Jwts.builder传入claims：账号、创建时间，过期时间-使用有效期和当前时间、以及secret-配置文件、加密方法。）
      * 返回token
+     *
      * @param umsAdminLoginParam
      * @return
      */
@@ -205,14 +218,126 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     /**
      * 通过旧token刷新新的token：只有在旧token存在的情况下才可刷新token
      * 在service层仅简单调用JwtTokenUtil，由util实现token相关内容
-     *
+     * <p>
      * 从token中获取账号，调用generate覆盖新token
+     *
      * @param token
      * @return
      */
     @Override
     public String refreshToken(String token) {
         return JwtTokenUtil.refreshHeadToken(token);
+    }
+
+    @Override
+    public UmsAdmin getAdminByUsername(String username) {
+        //创造条件构造器
+        UmsAdminExample umsAdminExample = new UmsAdminExample();
+        UmsAdminExample.Criteria criteria = umsAdminExample.createCriteria();
+        criteria.andUsernameEqualTo(username);
+        //使用条件够再起查询UmsAdmin
+        List<UmsAdmin> umsAdminList = umsAdminMapper.selectByExample(umsAdminExample);
+        if (umsAdminList != null && umsAdminList.size() > 0) {
+            return umsAdminList.get(0);
+        } else {
+            LOGGER.info("根据username查询umsAdmin失败");
+            return null;
+        }
+
+    }
+
+    /**
+     * 用户角色中间表、角色表
+     *
+     * @param adminId
+     * @return
+     */
+    @Override
+    public List<UmsRole> getRole(Long adminId) {
+        return umsRoleDao.getRoleList(adminId);
+    }
+
+    @Override
+    public int update(Long id, UmsAdmin umsAdmin) {
+        umsAdmin.setId(id);
+        //对关键信息进行预处理：密码，和库里的比较
+        UmsAdmin rowUmsAdmin = umsAdminMapper.selectByPrimaryKey(id);
+        if (rowUmsAdmin.getPassword().equals(umsAdmin.getPassword())) {
+            //密码未变化，无需更改
+            umsAdmin.setPassword(null);
+        }
+        if (StrUtil.isEmpty(umsAdmin.getPassword())) {
+            umsAdmin.setPassword(null);
+        } else {
+            umsAdmin.setPassword(passwordEncoder.encode(umsAdmin.getPassword()));
+        }
+        //根据id更新admin
+        int count = umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
+        //从cache中删除变化的admin TODO
+        return count;
+
+    }
+
+    @Override
+    public int updatePassword(UpdatePasswordParam updatePasswordParam) {
+        //判断账号、旧密码、新密码是否都有值
+        if (StrUtil.isEmpty(updatePasswordParam.getUsername()) ||
+                StrUtil.isEmpty(updatePasswordParam.getOldPassword()) || StrUtil.isEmpty(updatePasswordParam.getNewPassword())) {
+            return -1;
+        }
+        //参数不合法
+        //判断账号是否存在-2、旧密码-3是否正确
+        List<UmsAdmin> umsAdminList = umsAdminDao.getByUsername(updatePasswordParam.getUsername());
+        if (umsAdminList == null || umsAdminList.isEmpty()) {
+            return -2;
+        }
+        UmsAdmin umsAdmin = umsAdminList.get(0);
+        if (passwordEncoder.matches(updatePasswordParam.getOldPassword(), umsAdmin.getPassword())) {
+            //旧密码是否正确
+            return -3;
+        }
+        //更新密码
+        umsAdmin.setPassword(passwordEncoder.encode(updatePasswordParam.getNewPassword()));
+        umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
+        //去除cache上的数据 TODO
+        return 1;
+    }
+
+    /**
+     * 删除旧关系
+     * 添加新关系
+     *
+     * @param adminId
+     * @param roleIds
+     * @return
+     */
+    @Override
+    public int updateRole(Long adminId, List<Integer> roleIds) {
+        //判断有几个角色，作为返回值
+        int count = roleIds == null ? 0 : roleIds.size();
+        //删除旧关系
+        UmsAdminRoleRelationExample example = new UmsAdminRoleRelationExample();
+        example.createCriteria().andAdminIdEqualTo(adminId);
+        umsAdminRoleRelationMapper.deleteByExample(example);
+        //添加新关系
+        List<UmsAdminRoleRelation> adminRoleList = new ArrayList<>();
+        if (count > 0) {
+            //分配关系
+            for (int i = 0; i < count; i++) {
+                UmsAdminRoleRelation umsAdminRoleRelation = new UmsAdminRoleRelation();
+                umsAdminRoleRelation.setAdminId(adminId);
+                umsAdminRoleRelation.setRoleId(roleIds.get(i));
+                adminRoleList.add(umsAdminRoleRelation);
+            }
+            //添加关系
+            umsAdminDao.insertList(adminRoleList);
+        }
+        return count;
+    }
+
+    @Override
+    public List<UmsRole> getRoleList(Long adminId) {
+        return umsAdminDao.selectRoleList(adminId);
     }
 
     private UserDetails loadUserDetailByUsername(String username) {

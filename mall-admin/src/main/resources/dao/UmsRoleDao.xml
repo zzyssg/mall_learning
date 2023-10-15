@@ -13,4 +13,33 @@
         where a.id = #{adminId}
         group by m.id
     </select>
+    <select id="listUmsMenu" resultType="com.zzy.malladmin.mbg.model.UmsMenu">
+        select
+            m.id,m.parent_id parentId,m.create_time createTime,m.tile,
+            m.level,m.sort,m.name,m.icon,m.hidden
+        from ums_role_menu_relation urmr
+        left join ums_menu m on m.id = urmr.menu_id
+        where urmr.id = #{roleId}
+        group by m.id
+    </select>
+    <select id="getRoleList" resultType="com.zzy.malladmin.mbg.model.UmsRole">
+        select
+            ur.id,ur.name,ur.description,ur.admin_count,ur.create_time,ur.status,ur.sort
+        from ums_admin_role_relation uarr
+        left join ums_role ur
+        on uarr.role_id = ur.id
+        where uarr.admin_id = #{adminId}
+    </select>
+    <select id="getAllRole" resultType="com.zzy.malladmin.mbg.model.UmsRole">
+        select *
+        from ums_role
+    </select>
+    <select id="listUmsResource" resultType="com.zzy.malladmin.mbg.model.UmsResource">
+        select
+            ur.id,ur.create_time createTime,ur.name,ur.url,ur.description,ur.category_id categoryId
+        from ums_role_resource_relation urrr
+        left join ums_resource ur on urrr.resource_id = ur.id
+        where urrr.role_id = #{roleId}
+        group by ur.id
+    </select>
 </mapper>

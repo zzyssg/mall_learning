@@ -3,11 +3,8 @@ package com.zzy.malladmin.mbg.mapper;
 import com.zzy.malladmin.mbg.model.UmsRole;
 import com.zzy.malladmin.mbg.model.UmsRoleExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
 public interface UmsRoleMapper {
     long countByExample(UmsRoleExample example);
 

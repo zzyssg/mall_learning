@@ -1,8 +1,10 @@
 package com.zzy.malladmin.service;
 
 import com.zzy.malladmin.dto.UmsAdminLoginParam;
+import com.zzy.malladmin.dto.UpdatePasswordParam;
 import com.zzy.malladmin.mbg.model.UmsAdmin;
 import com.zzy.malladmin.mbg.model.UmsResource;
+import com.zzy.malladmin.mbg.model.UmsRole;
 
 import java.util.List;
 
@@ -35,4 +37,16 @@ public interface UmsAdminService {
     List<UmsResource> getResourceList(Long adminId);
 
     String refreshToken(String token);
+
+    UmsAdmin getAdminByUsername(String username);
+
+    List<UmsRole> getRole(Long adminId);
+
+    int update(Long id, UmsAdmin umsAdmin);
+
+    int updatePassword(UpdatePasswordParam updatePasswordwordParam);
+
+    int updateRole(Long adminId, List<Integer> roleIds);
+
+    List<UmsRole> getRoleList(Long adminId);
 }

@@ -3,11 +3,8 @@ package com.zzy.malladmin.mbg.mapper;
 import com.zzy.malladmin.mbg.model.UmsAdmin;
 import com.zzy.malladmin.mbg.model.UmsAdminExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
 public interface UmsAdminMapper {
     long countByExample(UmsAdminExample example);
 

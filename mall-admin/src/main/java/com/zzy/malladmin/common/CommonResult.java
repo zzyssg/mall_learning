@@ -59,4 +59,15 @@ public class CommonResult<T> {
         return result;
     }
 
+    public static <T> CommonResult<T> failed() {
+        CommonResult result = new CommonResult();
+        result.setMsg("失败");
+        result.setData(null);
+        result.setCode("300");
+        return result;
+    }
+
+
+
+
 }

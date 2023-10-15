@@ -48,5 +48,17 @@
         <table tableName="ums_resource">
             <generatedKey column="id" sqlStatement="MySQL" identity="true" />
         </table>
+        <table tableName="ums_admin_role_relation">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
+        <table tableName="ums_role_resource_relation" >
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
+        <table tableName="ums_role_menu_relation">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
+        <table tableName="ums_resource_category">
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+        </table>
     </context>
 </generatorConfiguration>

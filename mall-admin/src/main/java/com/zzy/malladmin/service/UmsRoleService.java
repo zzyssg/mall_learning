@@ -24,7 +24,7 @@ public interface UmsRoleService {
     List<UmsRole> listAll();
 
     //TODO 批量删除角色-根据List<ID>
-    void deleteBatch(List<Integer> ids);
+    int deleteBatch(List<Long> ids);
 
     //TODO 根据adminId展示菜单id
     List<UmsMenu> searchMenuById(Long adminId);
@@ -45,10 +45,17 @@ public interface UmsRoleService {
     int insert(UmsRole umsRole);
 
     //更新角色
-    int update(UmsRole umsRole);
+    int update(Long id, UmsRole umsRole);
 
     //删除角色
     void delete(Long id);
 
 
+    List<UmsMenu> getMenuList(Long userId);
+
+    int add(UmsRole umsRole);
+
+    int allocateMenu(Long roleId, List<Integer> menus);
+
+    int allocateResource(Long roleId, List<Long> resources);
 }

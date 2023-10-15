@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malladmin.dao.UmsMenuDao">
+    <select id="selectAllMenu" resultType="com.zzy.malladmin.mbg.model.UmsMenu">
+        select
+            um.id,um.parent_id parentId,um.create_time creaTime,um.title,um.level,um.sort,um.name,
+            um.icon,um.hidden
+        from ums_menu um
+    </select>
+    <select id="selectDownByParentId" resultType="com.zzy.malladmin.mbg.model.UmsMenu">
+        select
+            um.id,um.parent_id parentId,um.create_time creaTime,um.title,um.level,um.sort,um.name,
+            um.icon,um.hidden
+        from ums_menu um
+        where um.id = #{parentId}
+    </select>
+</mapper>
