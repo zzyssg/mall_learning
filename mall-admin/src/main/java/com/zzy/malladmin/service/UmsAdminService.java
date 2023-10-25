@@ -5,6 +5,7 @@ import com.zzy.malladmin.dto.UpdatePasswordParam;
 import com.zzy.malladmin.mbg.model.UmsAdmin;
 import com.zzy.malladmin.mbg.model.UmsResource;
 import com.zzy.malladmin.mbg.model.UmsRole;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public interface UmsAdminService {
 
     String login(UmsAdminLoginParam umsAdminService);
 
-    UmsAdmin geUserByUsername(String username);
+    UmsAdmin getUserByUsername(String username);
 
     List<UmsResource> getResourceList(Long adminId);
 
@@ -49,4 +50,10 @@ public interface UmsAdminService {
     int updateRole(Long adminId, List<Integer> roleIds);
 
     List<UmsRole> getRoleList(Long adminId);
+
+
+    UserDetails loadUserDetailByUsername(String username);
+
+    UmsAdminCacheService getCacheService();
+
 }

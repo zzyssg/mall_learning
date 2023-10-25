@@ -45,7 +45,7 @@ public class UmsAdminController {
     @Autowired
     UmsRoleService umsRoleService;
 
-    @Value("${jwt.head}")
+    @Value("${jwt.tokenHead}")
     String tokenHead;
 
     /**
@@ -120,6 +120,8 @@ public class UmsAdminController {
      * @param principal
      * @return
      */
+    @ApiOperation("查看用户信息")
+    @RequestMapping(value = "/info",method = RequestMethod.GET)
     public CommonResult info(Principal principal) {
         String username = principal.getName();
         //通过username获取admin信息
@@ -241,9 +243,10 @@ public class UmsAdminController {
      */
     @RequestMapping(value = "/updateStatus/{id}",method = RequestMethod.POST)
     public CommonResult updateStatus(@PathVariable Long id, @RequestParam("status") int status) {
-        UmsAdmin umsAdmin = new UmsAdmin();
-        umsAdmin.setId(id);
-        umsAdmin.setStatus(status);
+        UmsAdmin umsAdmin = UmsAdmin.builder().id(id).status(status).build();
+//                new UmsAdmin();
+//        umsAdmin.setId(id);
+//        umsAdmin.setStatus(status);
         int count = umsAdminService.update(id, umsAdmin);
         if (count > 0) {
             return CommonResult.success("更新成功");

@@ -2,6 +2,8 @@ package com.zzy.malladmin.common;
 
 import com.zzy.malladmin.mbg.model.UmsAdmin;
 import com.zzy.malladmin.mbg.model.UmsResource;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,14 +19,17 @@ import java.util.stream.Collectors;
  * @Description
  * @Version 1.0
  */
-public class UmsAdminDetails implements UserDetails {
+@Data
+@Builder
+public class AdminUserDetails implements UserDetails {
 
     //用户
     private final UmsAdmin umsAdmin;
     //资源列表
     private final List<UmsResource> umsResourceList;
 
-    public UmsAdminDetails(UmsAdmin umsAdmin, List<UmsResource> umsResourceList) {
+
+    public AdminUserDetails(UmsAdmin umsAdmin, List<UmsResource> umsResourceList) {
         this.umsAdmin = umsAdmin;
         this.umsResourceList = umsResourceList;
     }
@@ -33,37 +38,47 @@ public class UmsAdminDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return umsResourceList.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getId() + ":" + role.getName()))
+                .map(resource -> new SimpleGrantedAuthority(resource.getId() + ":" + resource.getName()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return umsAdmin.getPassword();
     }
+
 
     @Override
     public String getUsername() {
-        return null;
+        return umsAdmin.getUsername();
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "AdminUserDetails{" +
+                "umsAdmin=" + umsAdmin +
+                ", umsResourceList=" + umsResourceList +
+                '}';
     }
 }

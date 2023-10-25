@@ -23,43 +23,45 @@ import java.util.stream.Collectors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Builder
-public class AdminUserDetails implements UserDetails {
+public class AdminUserDetails
+//        implements UserDetails
+{
 
     private String username;
     private String password;
     private List<String> authorityList;
 
-    @Override
+//    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorityList.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
-    @Override
+//    @Override
     public String getPassword() {
         return this.password;
     }
 
-    @Override
+//    @Override
     public String getUsername() {
         return this.username;
     }
 
-    @Override
+//    @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Override
+//    @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override
+//    @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Override
+//    @Override
     public boolean isEnabled() {
         return false;
     }

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.Map;
  * @Description
  * @Version 1.0
  */
+@Component
 public class JwtTokenUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
@@ -31,32 +33,35 @@ public class JwtTokenUtil {
     private static final String CLAIM_KEY_CREATED = "created";
 
 
-    @Value("${jwt.head}")
-    private static String head;
+    @Value("${jwt.tokenHead}")
+    private  String head;
 
     @Value("${jwt.secret}")
-    private static String secret;
+    private  String secret;
 
     @Value("${jwt.expiration}")
-    private static Long expiration;
+    private  Long expiration;
 
-    public static String generateToken(Map<String, Object> claims) {
+    public  String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateDate())
-                .signWith(SignatureAlgorithm.ES512, secret)
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
 
     }
 
-    private static Date generateDate() {
-        Date date = new Date();
-        int milli1 = DateUtil.millisecond(date);
+    private  Date generateDate() {
+//        Date date = new Date();
+        //TODO DateUtil.millisecond() 和 System.currentTimeMillis 的区别
+//        int milli1 = DateUtil.millisecond(date);
         long mill2 = System.currentTimeMillis();
-        return new Date(DateUtil.millisecond(new Date()) + expiration * 1000);
+        //TODO 报错：jwt过期 at 19770-01-08
+        return new Date(System.currentTimeMillis() + expiration * 1000);
+
     }
 
-    public static String generateToken(UserDetails userDetails) {
+    public  String generateToken(UserDetails userDetails) {
         HashMap<String, Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
         claims.put(CLAIM_KEY_CREATED, new Date());
@@ -72,7 +77,7 @@ public class JwtTokenUtil {
      * @param oldToken
      * @return
      */
-    public static String refreshHeadToken(String oldToken) {
+    public  String refreshHeadToken(String oldToken) {
         //判断合法性
         if (oldToken == null) {
             return null;
@@ -98,7 +103,7 @@ public class JwtTokenUtil {
     }
 
     //create   <   cur   <  create +  已创建时间  : createTime在30min内生成
-    private static boolean isTokenRefreshJustBefore(String token, int seconds) {
+    private  boolean isTokenRefreshJustBefore(String token, int seconds) {
         Claims claims = getClaimsFromToken(token);
         Date created = claims.get(CLAIM_KEY_CREATED, Date.class);
         Date curDate = new Date();
@@ -110,11 +115,11 @@ public class JwtTokenUtil {
 
     }
 
-    private static Claims getClaimsFromToken(String token) {
+    private  Claims getClaimsFromToken(String token) {
         Claims claims = null;
         try {
 
-            Claims claimsJws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+            claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 
         } catch (Exception e) {
             e.getMessage();
@@ -124,13 +129,37 @@ public class JwtTokenUtil {
     }
 
     //expiration
-    private static boolean isTokenExpired(String oldToken) {
+    private  boolean isTokenExpired(String oldToken) {
         Date expiration = getExpiration(oldToken);
-        return expiration.after(new Date());
+        boolean isExpired =  expiration.before(new Date());
+        return isExpired;
     }
 
-    private static Date getExpiration(String token) {
+    private  Date getExpiration(String token) {
         Claims claim = getClaimsFromToken(token);
         return claim.getExpiration();
+    }
+
+
+    public String getUsername(String token) {
+        String username = null;
+        Claims claimsFromToken = getClaimsFromToken(token);
+        if (claimsFromToken != null) {
+            username = claimsFromToken.getSubject();
+        }
+        return username;
+    }
+
+    /**
+     *
+     * @param token 请求传入的token
+     * @param userDetails 数据库中查询的user
+     * @return
+     */
+    //校验 传入的token 和 账户是否合法
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        String username = getUsername(token);
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+
     }
 }

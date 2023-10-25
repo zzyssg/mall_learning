@@ -1,5 +1,6 @@
 package com.zzy.malladmin.common;
 
+import com.zzy.malladmin.api.ResultCode;
 import lombok.Data;
 
 /**
@@ -68,6 +69,19 @@ public class CommonResult<T> {
     }
 
 
+    public static <T> CommonResult<T> forbidden(String message) {
+        CommonResult result = new CommonResult();
+        result.setMsg(ResultCode.FORBIDDEN.getMessage());
+        result.setData(null);
+        result.setCode(ResultCode.FORBIDDEN.getCode() + "");
+        return result;
+    }
 
-
+    public static <T> CommonResult<T> unauthorized(String message) {
+        CommonResult result = new CommonResult();
+        result.setCode(ResultCode.UNAUTHENTICATED.getCode()+"");
+        result.setData(null);
+        result.setMsg(ResultCode.UNAUTHENTICATED.getMessage());
+        return result;
+    }
 }

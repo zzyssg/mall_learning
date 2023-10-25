@@ -5,6 +5,7 @@ import com.zzy.malladmin.mbg.model.UmsResourceCategory;
 import com.zzy.malladmin.mbg.model.UmsResourceCategoryExample;
 import com.zzy.malladmin.service.UmsResourceCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * @Description
  * @Version 1.0
  */
+@Service
 public class UmsResourceCategoryServiceImpl implements UmsResourceCategoryService {
 
 

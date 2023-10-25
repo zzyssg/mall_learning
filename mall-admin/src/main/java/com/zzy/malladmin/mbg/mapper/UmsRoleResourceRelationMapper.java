@@ -4,7 +4,9 @@ import com.zzy.malladmin.mbg.model.UmsRoleResourceRelation;
 import com.zzy.malladmin.mbg.model.UmsRoleResourceRelationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UmsRoleResourceRelationMapper {
     long countByExample(UmsRoleResourceRelationExample example);
 

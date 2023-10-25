@@ -2,7 +2,9 @@ package com.zzy.malladmin.controller;
 
 import com.zzy.malladmin.common.CommonPage;
 import com.zzy.malladmin.common.CommonResult;
+import com.zzy.malladmin.component.DynamicSecurityMetadataSource;
 import com.zzy.malladmin.mbg.model.UmsResource;
+import com.zzy.malladmin.service.DynamicSecurityService;
 import com.zzy.malladmin.service.UmsResourceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,11 +30,15 @@ public class UmsResourceController {
     @Autowired
     UmsResourceService umsResourceService;
 
+    @Autowired
+    DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
+
     @ApiOperation("新增资源")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public CommonResult create(@RequestBody UmsResource umsResource) {
         int count = umsResourceService.create(umsResource);
         //动态权限资源控制 TODO
+        dynamicSecurityMetadataSource.clearDataSource();
         if (count > 0) {
             return CommonResult.success("新增资源成功");
         }

@@ -10,12 +10,44 @@ spring:
     username: root
     password: 116924
 
+
 mybatis:
   mapper-locations:
     - classpath:dao/*.xml
     - classpath*:com/**/mapper/*.xml
 
 jwt:
-  expiration: 10
-  head: Bearer
+  expiration: 604800  # 7*24*60*60S
   secret: token
+  tokenHeader: Authorization
+  tokenHead: 'Bearer'
+
+security:
+  ignored:
+    urls:
+      - /swagger-ui/
+      - /swagger**
+      - /swagger-ui/**
+      - /swagger-resources/**
+      - /**/v2/api-docs
+      - /v3/**
+      - /webjars**
+      - /**/*.html
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.map
+      - /favicon.ico
+      - /actuator/**
+      - /druid/**
+      - /admin/login
+      - /admin/register
+      - /admin/info
+      - /admin/logout
+      - /minio/upload
+redis:
+  database: mall
+  expire: 806400 #24*3600S
+  key:
+    admin: "ums:admin"
+    resourceList: "ums:resourceList"

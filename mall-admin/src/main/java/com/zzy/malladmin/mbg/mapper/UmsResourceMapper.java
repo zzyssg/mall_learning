@@ -4,7 +4,9 @@ import com.zzy.malladmin.mbg.model.UmsResource;
 import com.zzy.malladmin.mbg.model.UmsResourceExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UmsResourceMapper {
     long countByExample(UmsResourceExample example);
 

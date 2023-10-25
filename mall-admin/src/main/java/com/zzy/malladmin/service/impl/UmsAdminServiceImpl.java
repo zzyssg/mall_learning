@@ -1,9 +1,10 @@
 package com.zzy.malladmin.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import com.github.pagehelper.PageHelper;
 import com.zzy.malladmin.common.JwtTokenUtil;
-import com.zzy.malladmin.common.UmsAdminDetails;
+import com.zzy.malladmin.common.AdminUserDetails;
 import com.zzy.malladmin.dao.UmsAdminDao;
 import com.zzy.malladmin.dao.UmsAdminRoleRelationDao;
 import com.zzy.malladmin.dao.UmsRoleDao;
@@ -14,6 +15,7 @@ import com.zzy.malladmin.mbg.mapper.UmsAdminMapper;
 import com.zzy.malladmin.mbg.mapper.UmsAdminRoleRelationMapper;
 import com.zzy.malladmin.mbg.model.*;
 import com.zzy.malladmin.model.UmsAdminRoleRelation;
+import com.zzy.malladmin.service.UmsAdminCacheService;
 import com.zzy.malladmin.service.UmsAdminService;
 import com.zzy.malladmin.service.UmsRoleService;
 import org.slf4j.Logger;
@@ -34,7 +36,7 @@ import java.util.List;
  * @ClassName UmsAdminServiceImpl
  * @Author ZZy
  * @Date 2023/9/29 14:21
- * @Description
+ * @Description   umsAdmin、umsResource相关信息需要使用redis优化
  * @Version 1.0
  */
 @Service
@@ -42,14 +44,22 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UmsAdminServiceImpl.class);
 
+    private List<AdminUserDetails> adminUserDetailsList = new ArrayList<>();
+
+    private List<UmsResource> resourceList = new ArrayList<>();
+
     @Autowired
     PasswordEncoder passwordEncoder;
+
 
     @Autowired
     UmsAdminMapper umsAdminMapper;
 
     @Autowired
     UmsAdminDao umsAdminDao;
+
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
     @Autowired
     UmsRoleService umsRoleService;
@@ -170,6 +180,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         try {
             //判断账号密码
             UserDetails userDetails = loadUserDetailByUsername(umsAdminLoginParam.getUsername());
+//            UserDetails userDetails = getAdminByUsername1(umsAdminLoginParam.getUsername());
             if (!passwordEncoder.matches(umsAdminLoginParam.getPassword(), userDetails.getPassword())) {
                 Assert.fail("密码错误");
             }
@@ -180,7 +191,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             //创建token
-            token = JwtTokenUtil.generateToken(userDetails);
+            token = jwtTokenUtil.generateToken(userDetails);
             //写入登录日志 TODO
             //将token放置在缓存中 TODO
         } catch (Exception e) {
@@ -192,13 +203,22 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     }
 
+    //使用redis优化
     @Override
-    public UmsAdmin geUserByUsername(String username) {
+    public UmsAdmin getUserByUsername(String username) {
+        //先从redis中查询是否已经存在
+        UmsAdmin admin = getCacheService().getAdmin(username);
+        if (admin != null) {
+            return admin;
+        }
+        //如果redis中不存在，则从数据库中查询
         UmsAdminExample umsAdminExample = new UmsAdminExample();
         UmsAdminExample.Criteria criteria = umsAdminExample.createCriteria();
         criteria.andUsernameEqualTo(username);
         List<UmsAdmin> umsAdminList = umsAdminMapper.selectByExample(umsAdminExample);
         if (umsAdminList != null) {
+            //更新到redis中
+            getCacheService().setAdmin(umsAdminList.get(0));
             return umsAdminList.get(0);
         }
         return null;
@@ -208,10 +228,15 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     public List<UmsResource> getResourceList(Long adminId) {
         //先从缓存中获取 TODO
-
+        List<UmsResource> resourceList = getCacheService().getResourceList(adminId);
+        if (resourceList != null) {
+            return resourceList;
+        }
         //缓存中没有，从库中获取  adminRoleRelationDao adminId --> roleId --> resourceList
-        List<UmsResource> resourceList = adminRoleRelationDao.getResourceList(adminId);
+        resourceList = adminRoleRelationDao.getResourceList(adminId);
         //设置在缓存里 TODO
+        getCacheService().setResourceList(adminId, resourceList);
+
         return resourceList;
     }
 
@@ -226,7 +251,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      */
     @Override
     public String refreshToken(String token) {
-        return JwtTokenUtil.refreshHeadToken(token);
+        return jwtTokenUtil.refreshHeadToken(token);
     }
 
     @Override
@@ -340,16 +365,22 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         return umsAdminDao.selectRoleList(adminId);
     }
 
-    private UserDetails loadUserDetailByUsername(String username) {
+    public UserDetails loadUserDetailByUsername(String username) {
         //尝试从缓存中读取 TODO
 
         //根据username获取userAdmin
-        UmsAdmin umsAdmin = geUserByUsername(username);
+        UmsAdmin umsAdmin = getUserByUsername(username);
         if (umsAdmin != null) {
             List<UmsResource> resourceList = getResourceList(umsAdmin.getId());
-            return new UmsAdminDetails(umsAdmin, resourceList);
-
+            return new AdminUserDetails(umsAdmin, resourceList);
         }
         throw new UsernameNotFoundException("用户名或者密码错误");
     }
+
+    @Override
+    public UmsAdminCacheService getCacheService() {
+        return SpringUtil.getBean(UmsAdminCacheService.class);
+    }
+
+
 }

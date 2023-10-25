@@ -9,6 +9,7 @@ package com.zzy.malladmin.common;
  */
 public interface IErrorCode {
 
+
     long getCode();
 
     String getMessage();

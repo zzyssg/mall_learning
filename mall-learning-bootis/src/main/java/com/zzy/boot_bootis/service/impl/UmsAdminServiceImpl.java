@@ -45,12 +45,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @PostConstruct
     private void init(){
         adminUserDetailsList.add(AdminUserDetails.builder()
-                .username("admin")
+                .username("admin1")
                 .password(passwordEncoder.encode("123456"))
                 .authorityList(CollUtil.toList("brand:listAll","brand:update","brand:create","brand:delete"))
                 .build());
         adminUserDetailsList.add(AdminUserDetails.builder()
-                .username("zzy")
+                .username("zzy1")
                 .password(passwordEncoder.encode("123456"))
                 .authorityList(CollUtil.toList("brand:list","brand:listAll"))
                 .build());

@@ -31,9 +31,9 @@ import javax.servlet.Filter;
  * @Description
  * @Version 1.0
  */
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@Configuration
 public class SecurityConfig {
     @Lazy
     @Autowired
@@ -48,7 +48,7 @@ public class SecurityConfig {
     @Autowired
     private RestAuthenticationEntryPoint authenticationEntryPoint;
 
-    @Bean
+//    @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws  Exception {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry urlRegistry = httpSecurity.authorizeRequests();
 
@@ -72,7 +72,7 @@ public class SecurityConfig {
         //禁用缓存？
         httpSecurity.headers().cacheControl();
         //添加filter
-        httpSecurity.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(new JwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
         httpSecurity.exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
