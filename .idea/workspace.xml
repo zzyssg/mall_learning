@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113335f9-ff29-439c-82f8-7b85272530bc" name="Changes" comment="till_hutool_to_main">
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/MallAdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/MallAdminApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/common/CommonResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/common/CommonResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/common/IErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/common/IErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/common/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/common/JwtTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/common/UmsAdminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/common/AdminUserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/config/CommonSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/config/CommonSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/config/SpringSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/config/Swagger2Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsResourceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/config/GlobalCorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/config/GlobalCorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsRoleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsAdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsAdminMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsAdminRoleRelationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsAdminRoleRelationMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsMenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsMenuMapper.java" afterDir="false" />
@@ -28,20 +17,9 @@
       <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsRoleMenuRelationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsRoleMenuRelationMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsRoleResourceRelationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/mapper/UmsRoleResourceRelationMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsResourceCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsResourceCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsRoleMenuRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsRoleMenuRelation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsRoleResourceRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/mbg/model/UmsRoleResourceRelation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/UmsAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/UmsAdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsAdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsAdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsResourceCategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsResourceCategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/domain/AdminUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/domain/AdminUserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/UmsAdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/UmsAdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/RedisServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/RedisServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsAdminCacheServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/UmsAdminCacheServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-admin/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-admin/src/main/resources/generatorConfig.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +36,9 @@
         <option value="spring-beans.schema" />
         <option value="Enum" />
         <option value="Kotlin File" />
+        <option value="AnnotationType" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -102,38 +80,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/apache-maven-3.6.3/reporsitory/org/springframework/spring-web/5.3.23/spring-web-5.3.23.jar&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;show.run.dashboard.notification&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;6c3b2d1937ae3e114f4b2fab8f60192f&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "F:/idea_proj/mall_learning/mall-admin/src/main/resources/dao",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "show.run.dashboard.notification": "false",
+    "spring.configuration.checksum": "6c3b2d1937ae3e114f4b2fab8f60192f"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.zzy.malladmin.service" />
       <recent name="com.zzy.malladmin.dto" />
+      <recent name="com.zzy.malladmin.service" />
       <recent name="com.zzy.malladmin.model" />
       <recent name="com.zzy.malladmin.dao" />
       <recent name="com.zzy.malladmin.common" />
@@ -165,9 +143,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.zzy.boot_bootis.mbg.Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zzy.boot_bootis.mbg.Generator" />
-      <module name="mall-learning-bootis" />
+    <configuration name="MallAdminApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zzy.malladmin.MallAdminApplication" />
+      <module name="mall-admin" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.zzy.boot_bootis.mbg.*" />
@@ -260,11 +238,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.MallAdminApplication" />
+      <item itemvalue="Application.com.zzy.malladmin.common.Generator" />
+      <item itemvalue="Application.Generator" />
+      <item itemvalue="JUnit.MallLearningMybatisApplicationTests.testPageSearch" />
+      <item itemvalue="Maven.mall_learning [clean]" />
+      <item itemvalue="Spring Boot.BootBootisApplication" />
+      <item itemvalue="Spring Boot.MallAdminApplication" />
+      <item itemvalue="Spring Boot.MallLearningBootApplication" />
+      <item itemvalue="Spring Boot.MallLearningMybatisApplication" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MallAdminApplication" />
         <item itemvalue="Application.com.zzy.malladmin.common.Generator" />
         <item itemvalue="Maven.mall_learning [clean]" />
-        <item itemvalue="Application.com.zzy.boot_bootis.mbg.Generator" />
         <item itemvalue="Application.Generator" />
         <item itemvalue="JUnit.MallLearningMybatisApplicationTests.testPageSearch" />
       </list>
@@ -308,7 +297,8 @@
       <workItem from="1697722027589" duration="17009000" />
       <workItem from="1697891649384" duration="22660000" />
       <workItem from="1697976169107" duration="12274000" />
-      <workItem from="1698025019585" duration="25500000" />
+      <workItem from="1698025019585" duration="25582000" />
+      <workItem from="1698322174143" duration="21921000" />
     </task>
     <task id="LOCAL-00001" summary="till_hutool">
       <created>1685979423846</created>
@@ -420,14 +410,19 @@
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/aop/WebLogAspect.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="114" />
+          <url>file://$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/PmsProductController.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="120" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/component/JwtAuthenticationTokenFilter.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="117" />
+          <url>file://$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/controller/UmsRoleController.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mall-admin/src/main/java/com/zzy/malladmin/service/impl/PmsProductServiceImpl.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="124" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/mall-learning-bootis/src/main/java/com/zzy/boot_bootis/service/impl/RedisServiceImpl.java</url>

@@ -4,9 +4,7 @@ import com.zzy.malladmin.mbg.model.UmsMenu;
 import com.zzy.malladmin.mbg.model.UmsMenuExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface UmsMenuMapper {
     long countByExample(UmsMenuExample example);
 

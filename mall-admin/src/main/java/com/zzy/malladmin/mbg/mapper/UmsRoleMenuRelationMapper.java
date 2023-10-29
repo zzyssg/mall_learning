@@ -4,9 +4,7 @@ import com.zzy.malladmin.mbg.model.UmsRoleMenuRelation;
 import com.zzy.malladmin.mbg.model.UmsRoleMenuRelationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface UmsRoleMenuRelationMapper {
     long countByExample(UmsRoleMenuRelationExample example);
 

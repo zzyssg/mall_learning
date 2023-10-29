@@ -24,7 +24,8 @@ import java.util.List;
  * @Description
  * @Version 1.0
  */
-@RestController(value = "/role")
+@RestController
+@RequestMapping(value = "/role")
 @Api(tags = "UmsRoleController")
 @Tag(name = "UmsRoleController", description = "用户角色")
 public class UmsRoleController {

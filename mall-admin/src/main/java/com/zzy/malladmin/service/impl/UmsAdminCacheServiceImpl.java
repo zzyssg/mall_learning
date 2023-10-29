@@ -6,6 +6,7 @@ import com.zzy.malladmin.service.RedisService;
 import com.zzy.malladmin.service.UmsAdminCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * @Description
  * @Version 1.0
  */
+@Service
 public class UmsAdminCacheServiceImpl implements UmsAdminCacheService {
     @Autowired
     private RedisService redisService;

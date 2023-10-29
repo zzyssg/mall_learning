@@ -1,5 +1,7 @@
 package com.zzy.malladmin.config;
 
+import com.zzy.malladmin.service.RedisService;
+import com.zzy.malladmin.service.impl.RedisServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -37,6 +39,7 @@ public class GlobalCorsConfig {
         return new CorsFilter(urlBasedCorsConfigurationSource);
 
     }
+
 
 
 

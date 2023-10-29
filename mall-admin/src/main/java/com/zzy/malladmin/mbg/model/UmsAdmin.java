@@ -40,6 +40,7 @@ public class UmsAdmin implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public UmsAdmin() {
+
     }
 
     public UmsAdmin(Long id, String username, String password, String icon, String email, String nickName, String note, Date createTime, Date loginTime, Integer status) {
