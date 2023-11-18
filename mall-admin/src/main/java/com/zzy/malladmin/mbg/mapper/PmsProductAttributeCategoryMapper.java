@@ -4,7 +4,9 @@ import com.zzy.malladmin.mbg.model.PmsProductAttributeCategory;
 import com.zzy.malladmin.mbg.model.PmsProductAttributeCategoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PmsProductAttributeCategoryMapper {
     long countByExample(PmsProductAttributeCategoryExample example);
 

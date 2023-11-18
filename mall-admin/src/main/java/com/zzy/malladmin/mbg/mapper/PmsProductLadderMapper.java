@@ -4,7 +4,9 @@ import com.zzy.malladmin.mbg.model.PmsProductLadder;
 import com.zzy.malladmin.mbg.model.PmsProductLadderExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PmsProductLadderMapper {
     long countByExample(PmsProductLadderExample example);
 

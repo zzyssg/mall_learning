@@ -4,7 +4,9 @@ import com.zzy.malladmin.mbg.model.PmsSkuStock;
 import com.zzy.malladmin.mbg.model.PmsSkuStockExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PmsSkuStockMapper {
     long countByExample(PmsSkuStockExample example);
 

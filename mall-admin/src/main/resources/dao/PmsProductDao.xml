@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zzy.malladmin.dao.PmsProductDao">
+    <resultMap id="updateInfoMap" type="com.zzy.malladmin.dto.PmsProductResult" extends="com.zzy.malladmin.mbg.mapper.PmsProductMapper.ResultMapWithBLOBs">
+        <result column="cateParentId" property="cateParentId" />
+        <collection property="memberPriceList" columnPrefix="mp_" resultMap="com.zzy.malladmin.mbg.mapper.PmsMemberPriceMapper.BaseResultMap"/>
+        <collection property="productFullReductionList" columnPrefix="pfl_" resultMap="com.zzy.malladmin.mbg.mapper.PmsProductFullReductionMapper.BaseResultMap"/>
+        <collection property="productLadderList" columnPrefix="pl_" resultMap="com.zzy.malladmin.mbg.mapper.PmsProductLadderMapper.BaseResultMap"/>
+        <collection property="skuStockList" columnPrefix="ss_" resultMap="com.zzy.malladmin.mbg.mapper.PmsSkuStockMapper.BaseResultMap"/>
+    </resultMap>
+
+    <select id="selectUpdateInfo" resultMap="updateInfoMap">
+        select
+            p.*,
+            pc.parent_id cateParentId,
+            pfr.id pfr_id,pfr.product_id pfr_product_id,pfr.full_price pfr_full_price,pfr.reduce_price pfr_reduce_price,
+            pl.id pl_id,pl.product_id pl_product_id,pl.count pl_count,pl.discount pl_discount,pl.price p_price,
+            ss.id ss_id,ss.product_id ss_product_id,ss.sku_code ss_sku_code,ss.price ss_price,ss.stock ss_stock,ss.low_stock ss_low_stock,
+            ss.pic ss_pic,ss.sale ss_sale,ss.promotion_price ss_promotion_price,ss.lock_stock ss_lock_stock, ss.sp_data ss_sp_data,
+            mp.id mp_id,mp.product_id mp_product_id, mp.member_level_id mp_member_level_id, mp.member_price mp_member_price,
+            mp.member_level_name mp_member_level_name
+        from
+            pms_product p
+                left join
+            pms_product_category pc on pc.id = p.product_category_id
+                left join
+            pms_product_full_reduction pfr on p.id = pfr.product_id
+                left join
+            pms_product_ladder pl on p.id = pl.id = pl.product_id
+                left join
+            pms_sku_stock ss on p.id = ss.product_id
+                left join
+            pms_member_price mp on p.id = mp.product_id
+        where p.id = #{productId}
+    </select>
     <insert id="insertList">
         insert into pms_member_price(product_id,member_level_id,member_price,member_level_name)
         values
@@ -11,4 +43,53 @@
             #{productItem.memberLevelName}
         </foreach>
     </insert>
+    <select id="selectSkuListProductId" resultType="com.zzy.malladmin.mbg.model.PmsSkuStock">
+        select
+            product_id productId,
+            sku_code skuCode,
+            price,
+            stock,
+            low_stock lowStock,
+            pic,
+            sale,
+            promotion_price promotionPrice,
+            lock_stock lockStock,
+            sp_data spData
+        from
+            pms_sku_stock
+        where
+            product_id = #{productId}
+    </select>
+    <select id="selectLadderListByProductId" resultType="com.zzy.malladmin.mbg.model.PmsProductLadder">
+        select
+            product_id productId,
+            count,
+            discount,
+            price
+        from
+            pms_product_ladder
+        where
+            product_id = #{productId}
+    </select>
+    <select id="selectProductFullReductionListByProductId" resultType="com.zzy.malladmin.mbg.model.PmsProductFullReduction">
+        select
+            product_id productId,
+            full_price fullPrice,
+            reduce_price reducePrice
+        from
+            pms_product_full_reduction
+        where
+            product_id = #{productId}
+    </select>
+    <select id="selectProductMemberPriceListByProductId" resultType="com.zzy.malladmin.mbg.model.PmsMemberPrice">
+        select
+            product_id productId,
+            member_level_id memberLevelId,
+            member_price memberPrice,
+            member_level_name memberLevelName
+        from
+            pms_member_price
+        where
+            product_id = #{productId}
+    </select>
 </mapper>

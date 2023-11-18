@@ -4,11 +4,11 @@
     <insert id="insertList">
         insert into pms_member_price(product_id,member_level_id,member_price,member_level_name)
         values
-        <foreach collection="list" index="id" separator="," open="(" close=")" item="productItem">
-            #{productItem.productItem},
-            #{productItem.memberLevelId},
-            #{productItem.memberPrice},
-            #{productItem.memberLevelName}
+        <foreach collection="list" index="index" separator=","  item="item">
+            (#{item.productId},
+            #{item.memberLevelId},
+            #{item.memberPrice},
+            #{item.memberLevelName})
         </foreach>
     </insert>
 </mapper>

@@ -4,7 +4,9 @@ import com.zzy.malladmin.mbg.model.PmsMemberPrice;
 import com.zzy.malladmin.mbg.model.PmsMemberPriceExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PmsMemberPriceMapper {
     long countByExample(PmsMemberPriceExample example);
 

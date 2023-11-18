@@ -1,19 +1,23 @@
 package com.zzy.malladmin.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.zzy.malladmin.dao.PmsMemberPriceDao;
-import com.zzy.malladmin.dao.PmsProductDao;
+import cn.hutool.core.util.StrUtil;
+import com.github.pagehelper.PageHelper;
+import com.zzy.malladmin.dao.*;
 import com.zzy.malladmin.dto.PmsProductParam;
-import com.zzy.malladmin.mbg.mapper.PmsProductMapper;
-import com.zzy.malladmin.mbg.model.PmsMemberPrice;
-import com.zzy.malladmin.mbg.model.PmsProduct;
+import com.zzy.malladmin.dto.PmsProductQueryParam;
+import com.zzy.malladmin.dto.PmsProductResult;
+import com.zzy.malladmin.mbg.mapper.*;
+import com.zzy.malladmin.mbg.model.*;
 import com.zzy.malladmin.service.PmsProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,12 +30,38 @@ import java.util.List;
 @Service
 public class PmsProductServiceImpl implements PmsProductService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PmsProductServiceImpl.class);
 
     @Autowired
     PmsProductDao pmsProductDao;
 
     @Autowired
+    PmsProductLadderDao productLadderDao;
+
+    @Autowired
+    PmsProductLadderMapper ladderMapper;
+
+    @Autowired
+    PmsSkuStockDao pmsSkuStockDao;
+
+    @Autowired
+    PmsSkuStockMapper skuStockMapper;
+
+    @Autowired
     PmsMemberPriceDao pmsMemberPriceDao;
+
+    @Autowired
+    PmsMemberPriceMapper memberPriceMapper;
+
+    @Autowired
+    PmsProductFullReductionDao productFullReductionDao;
+
+    @Autowired
+    PmsProductFullReductionMapper fullReductionMapper;
+
+    @Autowired
+    PmsProductAttributeValueDao pmsProductAttributeValueDao;
+
 
     @Autowired
     PmsProductMapper pmsProductMapper;
@@ -49,22 +79,224 @@ public class PmsProductServiceImpl implements PmsProductService {
         //会员价格
         relateAndInsertList(pmsMemberPriceDao, pmsProductParam.getMemberPriceList(), productId);
         //阶梯价格
+        relateAndInsertList(productLadderDao, pmsProductParam.getProductLadderList(), productId);
         //满减价格
-
+        relateAndInsertList(productFullReductionDao, pmsProductParam.getProductFullReductionList(), productId);
         //处理SKU编码
-
+        handleSkuStockCode(pmsProductParam.getSkuStockList(), productId);
         //添加sku库存消息
-
+        relateAndInsertList(pmsSkuStockDao, pmsProductParam.getSkuStockList(), productId);
         //添加商品参数、添加自定义商品价格
-
+        relateAndInsertList(pmsProductAttributeValueDao, pmsProductParam.getProductAttributeValueList(), productId);
         //关联专题
-
 
         //关联优选
 
         count = 1;
         return count;
 
+
+    }
+
+
+    public List<PmsProductParam> list1(PmsProductQueryParam pmsProductQueryParam, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        //example条件查询product列表 List<Product> list1
+        PmsProductExample pmsProductExample = new PmsProductExample();
+        PmsProductExample.Criteria criteria = pmsProductExample.createCriteria();
+        //TODO 需要在外边、数据库条件查询之前做处理么？  看数据量？
+        if (!StrUtil.isEmpty(pmsProductQueryParam.getKeyword())) {
+            criteria.andNameLike(pmsProductQueryParam.getKeyword());
+        }
+        if (!StrUtil.isEmpty(pmsProductQueryParam.getProductSn())) {
+            criteria.andProductSnEqualTo(pmsProductQueryParam.getProductSn());
+        }
+        if (pmsProductQueryParam.getProductCategoryId() != null) {
+            criteria.andProductCategoryIdEqualTo(pmsProductQueryParam.getProductCategoryId());
+        }
+        if (pmsProductQueryParam.getProductBrandId() != null) {
+            criteria.andProductCategoryIdEqualTo(pmsProductQueryParam.getProductBrandId());
+        }
+        if (pmsProductQueryParam.getVerifyStatus() != null) {
+            criteria.andVerifyStatusEqualTo(pmsProductQueryParam.getVerifyStatus());
+        }
+        if (pmsProductQueryParam.getPublishStatus() != null) {
+            criteria.andPublishStatusEqualTo(pmsProductQueryParam.getPublishStatus());
+        }
+        List<PmsProduct> productListByExample = pmsProductMapper.selectByExample(pmsProductExample);
+        List<PmsProductParam> result = new ArrayList<>();
+        //对list1进行处理，包装成  List<ProductParam> list2
+        for (PmsProduct product : productListByExample) {
+            PmsProductParam pmsProductParam = new PmsProductParam();
+            //添加skustocklist
+            List<PmsSkuStock> pmsSkuStockList = pmsProductDao.selectSkuListProductId(product.getId());
+            pmsProductParam.setSkuStockList(pmsSkuStockList);
+            //添加阶梯价格
+            List<PmsProductLadder> pmsProductLadderList = pmsProductDao.selectLadderListByProductId(product.getId());
+            pmsProductParam.setProductLadderList(pmsProductLadderList);
+            //添加满减
+            List<PmsProductFullReduction> pmsProductFullReductionList = pmsProductDao.selectProductFullReductionListByProductId(product.getId());
+            pmsProductParam.setProductFullReductionList(pmsProductFullReductionList);
+            //添加会员列表
+            List<PmsMemberPrice> pmsMemberPriceList = pmsProductDao.selectProductMemberPriceListByProductId(product.getId());
+            pmsProductParam.setMemberPriceList(pmsMemberPriceList);
+            //TODO 添加属性 如何使用几张属性表
+//            List<>
+            result.add(pmsProductParam);
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<PmsProduct> list(PmsProductQueryParam pmsProductQueryParam, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        //使用example查询PmsProduct列表
+        PmsProductExample pmsProductExample = new PmsProductExample();
+        PmsProductExample.Criteria criteria = pmsProductExample.createCriteria();
+        if (!StrUtil.isEmpty(pmsProductQueryParam.getKeyword())) {
+            criteria.andNameLike("%" + pmsProductQueryParam.getKeyword() + "%");
+        }
+        if (pmsProductQueryParam.getPublishStatus() != null) {
+            criteria.andPublishStatusEqualTo(pmsProductQueryParam.getPublishStatus());
+        }
+        if (pmsProductQueryParam.getVerifyStatus() != null) {
+            criteria.andVerifyStatusEqualTo(pmsProductQueryParam.getVerifyStatus());
+        }
+        if (pmsProductQueryParam.getProductCategoryId() != null) {
+            criteria.andProductCategoryIdEqualTo(pmsProductQueryParam.getProductCategoryId());
+        }
+        if (pmsProductQueryParam.getProductBrandId() != null) {
+            criteria.andBrandIdEqualTo(pmsProductQueryParam.getProductBrandId());
+        }
+        if (!StrUtil.isEmpty(pmsProductQueryParam.getProductSn())) {
+            criteria.andProductSnEqualTo(pmsProductQueryParam.getProductSn());
+        }
+        List<PmsProduct> pmsProductList = pmsProductMapper.selectByExample(pmsProductExample);
+        return pmsProductList;
+    }
+
+    @Override
+    public List<PmsProduct> simpleList(String keyword) {
+        ;
+        PmsProductExample pmsProductExample = new PmsProductExample();
+        PmsProductExample.Criteria criteria = pmsProductExample.createCriteria();
+        //名称、描述模糊查询
+        if (StrUtil.isEmpty(keyword)) {
+            criteria.andNameLike("%" + keyword + "%");
+            pmsProductExample.or().andDeleteStatusEqualTo(0).andProductSnLike("%" + keyword + "%");
+        }
+        List<PmsProduct> productList = pmsProductMapper.selectByExample(pmsProductExample);
+        return productList;
+    }
+
+    @Override
+    public Integer batchUpdateDeleteStatus(List<Long> ids, Integer deleteStatus) {
+        //遍历数组，将对应product的id的状态改为 deleteStatus的状态
+        PmsProduct product = new PmsProduct();
+        product.setDeleteStatus(deleteStatus);
+        PmsProductExample pmsProductExample = new PmsProductExample();
+        PmsProductExample.Criteria criteria = pmsProductExample.createCriteria();
+        criteria.andIdIn(ids);
+        int count = pmsProductMapper.updateByExampleSelective(product, pmsProductExample);
+        return count;
+    }
+
+    @Override
+    public int updateNewStatus(List<Long> ids, Integer newStatus) {
+        //构造条件构造器
+        //创造selective对象
+        PmsProductExample pmsProductExample = new PmsProductExample();
+        PmsProductExample.Criteria criteria = pmsProductExample.createCriteria();
+        criteria.andIdIn(ids);
+        PmsProduct record = new PmsProduct();
+        record.setNewStatus(newStatus);
+        //调mapper
+        int count = pmsProductMapper.updateByExampleSelective(record, pmsProductExample);
+        return count;
+    }
+
+    @Override
+    public int updatePublishStatus(List<Long> ids, Integer publishStatus) {
+        //构造条件构造器
+        PmsProductExample pmsProductExample = new PmsProductExample();
+        pmsProductExample.createCriteria().andIdIn(ids);
+        //设置record
+        PmsProduct record = new PmsProduct();
+        record.setPublishStatus(publishStatus);
+        //调用mapper
+        int count = pmsProductMapper.updateByExampleSelective(record, pmsProductExample);
+        return count;
+    }
+
+    @Override
+    public int updateRecommendStatus(List<Long> ids, Integer recommendStatus) {
+        PmsProductExample pmsProductExample = new PmsProductExample();
+        pmsProductExample.createCriteria().andIdIn(ids);
+        PmsProduct record = new PmsProduct();
+        record.setRecommandStatus(recommendStatus);
+        int count = pmsProductMapper.updateByExampleSelective(record, pmsProductExample);
+        return count;
+    }
+
+    @Override
+    public int updateVerifyStatus(List<Long> ids, Integer verifyStatus) {
+        PmsProduct record = new PmsProduct();
+        record.setVerifyStatus(verifyStatus);
+        PmsProductExample pmsProductExample = new PmsProductExample();
+        pmsProductExample.createCriteria().andIdIn(ids);
+        int count = pmsProductMapper.updateByExampleSelective(record, pmsProductExample);
+        //TODO 修改完审核状态后插入审核记录 PmsProductVertifyRecord
+        return count;
+
+    }
+
+    @Override
+    public PmsProductResult getUpdateInfo(Long id) {
+        PmsProductResult pmsProductResult = null;
+        try {
+            pmsProductResult = pmsProductDao.selectUpdateInfo(id);
+        } catch (Exception e) {
+            LOGGER.info(e.getMessage());
+        }
+        return pmsProductResult;
+    }
+
+    @Override
+    public int updateInfo(Long productId, PmsProductParam pmsProductParam) {
+        //更新create时的信息
+        //涉及到的表有：pms_product pms_member_price pms_product_ladder pms_sku_stock pms_product_full_reduction
+        //1 pms_product
+        PmsProduct product = new PmsProduct();
+        BeanUtils.copyProperties(pmsProductParam, product);
+        PmsProductExample productExample = new PmsProductExample();
+        productExample.createCriteria().andIdEqualTo(pmsProductParam.getId());
+        pmsProductMapper.updateByExampleSelective(product, productExample);
+        //2 pms_member_price 根据productId批量更新memberPrice  删除+新增  productId   memberPriceList
+        PmsMemberPriceExample memberPriceExample = new PmsMemberPriceExample();
+        memberPriceExample.createCriteria().andProductIdEqualTo(productId);
+        memberPriceMapper.deleteByExample(memberPriceExample);
+        pmsMemberPriceDao.insertList(pmsProductParam.getMemberPriceList());
+        //3 pms_product_ladder
+        PmsProductLadderExample ladderExample = new PmsProductLadderExample();
+        ladderExample.createCriteria().andProductIdEqualTo(productId);
+        ladderMapper.deleteByExample(ladderExample);
+        productLadderDao.insertList(pmsProductParam.getProductLadderList());
+        //4 pms_sku_stock
+        PmsSkuStockExample skuStockExample = new PmsSkuStockExample();
+        skuStockExample.createCriteria().andProductIdEqualTo(productId);
+        skuStockMapper.deleteByExample(skuStockExample);
+        pmsSkuStockDao.insertList(pmsProductParam.getSkuStockList());
+        //5 pms_product_full_reduction
+        PmsProductFullReductionExample fullReductionExample = new PmsProductFullReductionExample();
+        fullReductionExample.createCriteria().andProductIdEqualTo(productId);
+        fullReductionMapper.deleteByExample(fullReductionExample);
+        productFullReductionDao.insertList(pmsProductParam.getProductFullReductionList());
+        int count = 1;
+        return count;
+    }
+
+    private void handleSkuStockCode(List<PmsSkuStock> skuStockList, Long productId) {
 
     }
 
@@ -83,7 +315,7 @@ public class PmsProductServiceImpl implements PmsProductService {
                 setProductId = item.getClass().getMethod("setProductId", Long.class);
                 setProductId.invoke(item, productId);
             }
-        //批量调用dao层方法批量插入关联表
+            //批量调用dao层方法批量插入关联表
             Method insertList = dao.getClass().getMethod("insertList", List.class);
             insertList.invoke(dao, relationList);
         } catch (Exception e) {

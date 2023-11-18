@@ -31,7 +31,7 @@ public class PmsProductParam extends PmsProduct {
     @ApiModelProperty("商品参数及自定义规格属性")
     private List<PmsProductAttributeValue> productAttributeValueList;
 
-    //专题和商品关系
+    //专题和商品关系 CmsSubjectProductRelation
 
     //优选专区和商品的关系
 

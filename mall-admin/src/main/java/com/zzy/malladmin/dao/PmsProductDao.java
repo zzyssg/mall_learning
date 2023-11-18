@@ -1,6 +1,7 @@
 package com.zzy.malladmin.dao;
 
-import com.zzy.malladmin.mbg.model.PmsProduct;
+import com.zzy.malladmin.dto.PmsProductResult;
+import com.zzy.malladmin.mbg.model.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,6 +18,14 @@ public interface PmsProductDao {
 
     int insertList(List<PmsProduct> productList);
 
+    List<PmsSkuStock> selectSkuListProductId(Long productId);
 
 
+    List<PmsProductLadder> selectLadderListByProductId(Long id);
+
+    List<PmsProductFullReduction> selectProductFullReductionListByProductId(Long id);
+
+    List<PmsMemberPrice> selectProductMemberPriceListByProductId(Long id);
+
+    PmsProductResult selectUpdateInfo(Long id);
 }
