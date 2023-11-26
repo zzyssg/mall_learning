@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malllearningmybatis.dao.UmsResourceCategoryDao">
+    <resultMap id="BaseResultMap" type="com.zzy.malllearningmybatis.model.UmsResourceCategory">
+        <id column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="name" property="name"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+    <resultMap id="UmsResourceCategoryExtMap" type="com.zzy.malllearningmybatis.domain.UmsResourceCategoryExt"
+               extends="BaseResultMap">
+        <collection property="resources" columnPrefix="resources_"
+                    resultMap="com.zzy.malllearningmybatis.dao.UmsResourceDao.BaseResultMap"/>
+    </resultMap>
+    <select id="selectUmsResourceCategoryExtByCategoryId"
+            resultType="com.zzy.malllearningmybatis.domain.UmsResourceCategoryExt">
+        select urc.id,
+               urc.create_time,
+               urc.name,
+               urc.sort,
+               ur.id          "resources.id",
+               ur.create_time "resources.createTime",
+               ur.name        "resources.name",
+               ur.url         "resources.url",
+               ur.description "resources.description",
+               ur.category_id "resources.categoryId"
+        from ums_resource ur
+                 right join ums_resource_category urc
+                            on ur.category_id = urc.id
+        where urc.id = #{id}
+    </select>
+    <select id="selectUmsResourceCategoryExtByCategoryId2" resultMap="UmsResourceCategoryExtMap">
+        select urc.id,
+               urc.create_time,
+               urc.name,
+               urc.sort,
+               ur.id          resources_id,
+               ur.create_time resources_create_time,
+               ur.name        resources_name,
+               ur.url         resources_url,
+               ur.description resources_description,
+               ur.category_id resources_category_id
+        from ums_resource ur
+                 right join ums_resource_category urc
+                            on ur.category_id = urc.id
+        where urc.id = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,23 @@
+server:
+  port: 8080
+#mybatis:
+#  mapper-locations:
+#    - classpath:dao/*.xml
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath*:com/**/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+#    url: jdbc:mysql://localhost:3306/mall_tiny?serverTimezone=Asia/Shanghai&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/mall_tiny?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: 116924
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.jdbc.Driver

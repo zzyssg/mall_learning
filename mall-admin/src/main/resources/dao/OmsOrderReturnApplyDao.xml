@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malladmin.dao.OmsOrderReturnApplyDao">
+    <select id="getList" resultMap="com.zzy.malladmin.mbg.mapper.OmsOrderReturnApplyMapper.BaseResultMap">
+        select
+        from oms_order_return_apply oora
+        where
+            1 = 1
+        <if test="#{pageQueryParam.id} != null">
+            and id = #{pageQueryParam.id}
+        </if>
+        <if test="#{pageQueryParam.status} != null">
+            and status = #{pageQueryParam.status}
+        </if>
+        <if test="#{pageQueryParam.creatTime} != ''">
+            and creat_time = concat(#{pageQueryParam.creatTime},'%')
+        </if>
+        <if test="#{pageQueryParam.handleTime} != ''">
+            and handle_time like concat(#{pageQueryParam.handleTime},'%')
+        </if>
+        <if test="#{pageQueryParam.handleMan} != ''">
+            and handle_man = #{pageQueryParam.handleMan}
+        </if>
+        <if test="#{pageQueryParam.receiverKeyword} != ''"></if>
+            and (
+                return_name like concat('%',#{pageQueryParam.receiverKeyword},'%')
+                or
+                return_phone like concat('%',#{pageQueryParam.receiverKeyword},'%')
+        )
+    </select>
+</mapper>

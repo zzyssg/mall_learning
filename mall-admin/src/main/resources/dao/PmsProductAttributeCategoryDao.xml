@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malladmin.dao.PmsProductAttributeCategoryDao">
+    <resultMap id="AttributeCategoryWithChildrenMap" type="com.zzy.malladmin.dto.PmsProductCategoryWithChildren" extends="com.zzy.malladmin.mbg.mapper.PmsProductAttributeCategoryMapper.BaseResultMap">
+        <collection property="children" columnPrefix="children_" resultMap="com.zzy.malladmin.mbg.mapper.PmsProductAttributeMapper.BaseResultMap"/>
+    </resultMap>
+
+    <select id="getAttributeCategoryWithChildren" resultMap="AttributeCategoryWithChildrenMap">
+        select
+            ac.id,
+            ac.name,
+            ac.attribute_count,
+            ac.param_count,
+            a.id children_id,
+            a.product_attribute_category_id children_product_attribute_category_id,
+            a.name children_name,
+            a.select_type children_select_type,
+            a.input_type children_input_type,
+            a.input_list children_input_list,
+            a.sort children_sort,
+            a.filter_type children_filter_type,
+            a.search_type children_search_type,
+            a.related_status children_related_status,
+            a.hand_add_status children_hand_add_status,
+            a.type children_type
+        from
+            pms_product_attribute_category ac
+        left join pms_product_attribute a on ac.id = a.product_attribute_category_id
+
+
+    </select>
+    <select id="test" resultMap="com.zzy.malladmin.mbg.mapper.PmsProductAttributeCategoryMapper.BaseResultMap">
+        select *
+        from pms_product_attribute_category
+    </select>
+</mapper>

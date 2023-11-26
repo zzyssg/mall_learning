@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malladmin.dao.UmsAdminRoleRelationDao">
+    <select id="getResourceList" resultType="com.zzy.malladmin.mbg.model.UmsResource">
+        SELECT
+            r.id,
+            r.create_time createTime,
+            r.NAME,
+            r.url,
+            r.description,
+            r.category_id categoryId
+        FROM
+            ums_admin_role_relation arr
+        LEFT JOIN ums_role_resource_relation rrr ON arr.role_id = rrr.role_id
+        LEFT JOIN ums_resource r ON r.id = rrr.resource_id
+        LEFT JOIN ums_admin a ON arr.admin_id = a.id
+        WHERE
+            a.id = #{adminId}
+    </select>
+</mapper>

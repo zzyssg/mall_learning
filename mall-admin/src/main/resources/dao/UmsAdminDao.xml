@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malladmin.dao.UmsAdminDao">
+    <select id="getByUsername" resultType="com.zzy.malladmin.mbg.model.UmsAdmin">
+        select
+            a.id,a.username,a.password,a.icon,a.email,a.nick_name nickName,a.create_time,
+            a.login_time,a.status
+        from ums_admin a
+        where a.username = #{username}
+    </select>
+    <insert id="insertList" >
+        insert into ums_admin_role_relation(admin_id, role_id) values
+        <foreach collection="list" item="item" separator="," index="index" open="(" close=")">
+            #{item.adminId},#{item.roleId}
+        </foreach>
+    </insert>
+    <select id="selectRoleList" resultType="com.zzy.malladmin.mbg.model.UmsRole">
+        select
+            ur.id,ur.name,ur.description,ur.admin_count adminCount,
+            ur.createTime,ur.status,ur.sort
+        from ums_admin_role_relation uarr
+        left join ums_role ur  on  uarr.role_id = ur.id
+        where uarr.admin_id = #{adminId}
+    </select>
+</mapper>

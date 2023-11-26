@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malladmin.dao.PmsProductAttributeDao">
+    <select id="getAttributeInfo" resultType="com.zzy.malladmin.dto.PmsProductAttributeInfo">
+        /*获取attributeId  attributeCategoryId 新建或者修改商品时用到，第一步选择商品类型，第三步选择属性类型，属性类型的选择范围根据商品类型决定
+          同时，选完某个属性类型时，属性列表（attributeIdList）也定下来了
+          */
+        select
+               pa.id productAttributeId,
+               pac.id productAttributeCategoryId
+        from pms_product_category_attribute_relation pacar
+        left join pms_product_attribute pa on pacar.product_attribute_id = pa.id
+        left join pms_product_attribute_category  pac on pa.product_attribute_category_id = pac.id
+        where pacar.product_category_id = #{cid}
+    </select>
+</mapper>

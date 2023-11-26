@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malllearningmybatis.dao.UmsResourceDao">
+
+    <resultMap id="BaseResultMap" type="com.zzy.malllearningmybatis.model.UmsResource">
+        <id column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="name" property="name"/>
+        <result column="url" property="url"/>
+        <result column="description" property="description"/>
+        <result column="category_id" property="categoryId"/>
+    </resultMap>
+    <resultMap id="UmsResourceExtMap" extends="BaseResultMap" type="com.zzy.malllearningmybatis.domain.UmsResourceExt">
+        <association property="category"
+                     resultMap="com.zzy.malllearningmybatis.dao.UmsResourceCategoryDao.BaseResultMap"
+                     columnPrefix="category_"/>
+    </resultMap>
+    <select id="selectUmsResourceExtByResourceId" resultMap="UmsResourceExtMap">
+        select ur.id,
+               ur.create_time,
+               ur.name,
+               ur.url,
+               ur.description,
+               ur.category_id,
+               urc.id          category_id,
+               urc.create_time category_create_time,
+               urc.name        category_name,
+               urc.sort        cateogoy_sort
+        from ums_resource ur
+                 left join ums_resource_category urc
+                           on ur.category_id = urc.id
+        where ur.id = #{id}
+    </select>
+    <select id="selectUmsResourceExtByResourceId2" resultType="com.zzy.malllearningmybatis.domain.UmsResourceExt">
+        select ur.id,
+               ur.create_time,
+               ur.name,
+               ur.url,
+               ur.description,
+               ur.category_id  categoryId,
+               urc.id          "category1.id",
+               urc.create_time "category1.createTime",
+               urc.name        "category1.name",
+               urc.sort        "cateogoy1.sort"
+        from ums_resource ur
+                 left join ums_resource_category urc
+                           on ur.category_id = urc.id
+        where ur.id = #{id}
+    </select>
+
+    <!--分页查询-->
+    <select id="pageSearchByCategoryId" resultType="com.zzy.malllearningmybatis.model.UmsResource">
+        select * from ums_resource
+        where category_id = #{categoryId}
+    </select>
+
+</mapper>

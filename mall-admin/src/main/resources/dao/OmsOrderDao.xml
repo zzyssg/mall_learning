@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malladmin.dao.OmsOrderDao">
+    <resultMap id="OmsOrderDetailMap" extends="com.zzy.malladmin.mbg.mapper.OmsOrderMapper.BaseResultMap" type="com.zzy.malladmin.dto.OmsOrderDetail">
+        <collection property="orderItemList" columnPrefix="item" resultMap="com.zzy.malladmin.mbg.mapper.OmsOrderItemMapper.BaseResultMap" />
+        <collection property="orderOperateHistoryList" columnPrefix="history" resultMap="com.zzy.malladmin.mbg.mapper.OmsOrderOperateHistoryMapper.BaseResultMap" />
+    </resultMap>
+    <update id="delivery" parameterType="List">
+        update oms_order
+        set
+            status = case id
+        <foreach collection="list" item="item">
+            when #{item.orderId} then 2,
+        </foreach>
+        end,
+            delivery_sn = case id
+        <foreach collection="list" item="item">
+            when #{item.orderId} then #{item.deliverySn}
+        </foreach>
+        end,
+            delivery_time = case id
+        <foreach collection="list" item="item">
+            when #{item.orderId} then now()
+        </foreach>
+        end,
+            delivery_company = case id
+        <foreach collection="list" item="item">
+            when #{item.orderId} then #{item.deliveryCompany}
+        </foreach>
+        end
+        where id in
+        <foreach collection="list" separator="," item="item" index="index" close=")" open="(" >
+            #{item.orderId}
+        </foreach>
+        and status = 1
+    </update>
+    <select id="detail" resultMap="OmsOrderDetailMap">
+        select
+               o.*,
+               ooh.id item_id,
+               ooh.order_id item_order_id,
+               ooh.order_sn item_order_sn,
+               ooh.product_id item_product_id,
+               ooh.product_pic item_product_pic,
+               ooh.product_name item_product_name,
+               ooh.product_sn item_product_sn,
+               ooh.product_brand item_product_brand,
+               ooh.product_price item_product_price,
+               ooh.product_quantity item_product_quantity,
+               ooh.product_sku_id item_product_sku_id,
+               ooh.product_sku_code item_product_sku_id,
+               ooh.product_category_id item_product_category_id,
+               ooh.promotion_name item_promotion_name,
+               ooh.promotion_amount item_promotion_amount,
+               ooh.coupon_amount item_coupon_amount,
+               ooh.integration_amount item_integration_amount,
+               ooh.real_amount item_real_amount,
+               ooh.gift_integration item_gift_integration,
+               ooh.gift_growth item_gift_growth,
+               ooh.product_attr item_product_attr,
+               oi.id history_id,
+               oi.order_id history_order_id,
+               oi.operate_man history_operate_man,
+               oi.create_time history_create_time,
+               oi.order_status history_order_status,
+               oi.note history_note
+        from oms_order o
+        left join oms_order_operate_history oi on o.id = oi.order_id
+        left join oms_order_item ooh on o.id = ooh.order_id
+        where o.id = #{id}
+        order by o.id asc, oi.ceate_time desc
+    </select>
+</mapper>
