@@ -35,7 +35,7 @@ public interface RedisService {
     Boolean hasKey(String key);
 
     //按delta
-    Long incr(String key, Long delta);
+    Long incr(String key, int delta);
 
     Long decr(String key, Long delta);
 

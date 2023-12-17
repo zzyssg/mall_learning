@@ -4,7 +4,9 @@ import com.zzy.malladmin.mbg.model.OmsCartItem;
 import com.zzy.malladmin.mbg.model.OmsCartItemExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OmsCartItemMapper {
     long countByExample(OmsCartItemExample example);
 

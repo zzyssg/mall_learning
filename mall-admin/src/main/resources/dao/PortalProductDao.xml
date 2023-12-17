@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzy.malladmin.dao.PortalProductDao">
+    <resultMap id="ProductPromotionMap" type="com.zzy.malladmin.model.PromotionProduct"
+               extends="com.zzy.malladmin.mbg.mapper.PmsProductMapper.BaseResultMap">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <collection columnPrefix="pdr_" property="fullReductionList" resultMap="com.zzy.malladmin.mbg.mapper.PmsProductFullReductionMapper.BaseResultMap" />
+        <collection property="productLadderList" columnPrefix="pl_" resultMap="com.zzy.malladmin.mbg.mapper.PmsProductLadderMapper.BaseResultMap" />
+        <collection property="skuStockList" columnPrefix="sku_"
+                    resultMap="com.zzy.malladmin.mbg.mapper.PmsSkuStockMapper.BaseResultMap"/>
+    </resultMap>
+
+    <select id="getPromotionProductList" resultMap="ProductPromotionMap">
+        SELECT
+        p.id id,
+        pfr.id pfr_id,
+        pfr.product_id pfr_product_id,
+        pfr.full_price pfr_full_price,
+        pfr.reduce_price pfr_reduce_price,
+        pl.id pl_id,
+        pl.product_id pl_product_id,
+        pl.count pl_count,
+        pl.discount pl_discount,
+        pl.price pl_price,
+        sku.id sku_id,
+        sku.product_id sku_product_id,
+        sku.sku_code sku_sku_code,
+        sku.stock sku_stock,
+        sku.low_stock sku_low_stock,
+        sku.pic sku_pic,
+        sku.sale sku_sale,
+        sku.promotion_price sku_promotion_price,
+        sku.lock_stock sku_lock_stock,
+        sku.sp_data sku_sp_data
+        FROM
+        pms_product p
+        LEFT JOIN pms_product_full_reduction pfr ON p.id = pfr.product_id
+        LEFT JOIN pms_product_ladder pl ON p.id = pl.product_id
+        LEFT JOIN pms_sku_stock sku ON p.id = sku.product_id
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" index="id" separator=",">
+            #{id}
+        </foreach>
+
+    </select>
+
+</mapper>

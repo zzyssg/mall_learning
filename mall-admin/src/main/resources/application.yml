@@ -54,3 +54,4 @@ redis:
   key:
     admin: "ums:admin"
     resourceList: "ums:resourceList"
+    orderId: "oms:orderId"

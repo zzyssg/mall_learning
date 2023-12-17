@@ -1,9 +1,11 @@
 package com.zzy.malladmin.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: mall_learning
@@ -14,91 +16,18 @@ import java.util.Date;
 @Data
 public class OmsOrderParam {
 
-    private Long memberId;
+    @ApiModelProperty("收货人地址")
+    private Long memberReceiveAddressId;
 
+    @ApiModelProperty("优惠券ID")
     private Long couponId;
 
-    private String orderSn;
+    @ApiModelProperty("使用的积分数")
+    private Integer userIntegration;
 
-    private Date createTime;
-
-    private String memberUsername;
-
-    private BigDecimal totalAmount;
-
-    private BigDecimal payAmount;
-
-    private BigDecimal freightAmount;
-
-    private BigDecimal promotionAmount;
-
-    private BigDecimal integrationAmount;
-
-    private BigDecimal couponAmount;
-
-    private BigDecimal discountAmount;
-
+    @ApiModelProperty("支付方式")
     private Integer payType;
 
-    private Integer sourceType;
-
-    private Integer status;
-
-    private Integer orderType;
-
-    private String deliveryCompany;
-
-    private String deliverySn;
-
-    private Integer autoConfirmDay;
-
-    private Integer integration;
-
-    private Integer growth;
-
-    private String promotionInfo;
-
-    private Integer billType;
-
-    private String billHeader;
-
-    private String billContent;
-
-    private String billReceiverPhone;
-
-    private String billReceiverEmail;
-
-    private String receiverName;
-
-    private String receiverPhone;
-
-    private String receiverPostCode;
-
-    private String receiverProvince;
-
-    private String receiverCity;
-
-    private String receiverRegion;
-
-    private String receiverDetailAddress;
-
-    private String note;
-
-    private Integer confirmStatus;
-
-    private Integer deleteStatus;
-
-    private Integer useIntegration;
-
-    private Date paymentTime;
-
-    private Date deliveryTime;
-
-    private Date receiveTime;
-
-    private Date commentTime;
-
-    private Date modifyTime;
-
-
+    @ApiModelProperty("被选中的购物车商品ID")
+    private List<Long> cartIds;
 }
