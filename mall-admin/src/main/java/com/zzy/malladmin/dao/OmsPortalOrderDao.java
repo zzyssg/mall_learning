@@ -9,12 +9,12 @@ import java.util.List;
  * @program: mall_learning
  * @description:
  * @author: zzy
- * @create: 2023-12-17
+ * @create: 2023-12-19
  */
 @Repository
-public interface OmsOrderItemDao {
-
-    Integer batchInsert(List<OmsOrderItem> orderItemList);
+public interface OmsPortalOrderDao {
 
     Integer batchUpdate(List<OmsOrderItem> orderItemList);
+
+    Integer releaseSkuLockStock(List<OmsOrderItem> orderItemList);
 }

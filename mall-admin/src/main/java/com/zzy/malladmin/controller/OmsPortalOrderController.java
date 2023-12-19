@@ -5,6 +5,7 @@ import com.zzy.malladmin.common.CommonPage;
 import com.zzy.malladmin.common.CommonResult;
 import com.zzy.malladmin.common.CommonResultAssert;
 import com.zzy.malladmin.dto.ConfirmOrderResult;
+import com.zzy.malladmin.dto.OmsOrderDetail;
 import com.zzy.malladmin.dto.OmsOrderParam;
 import com.zzy.malladmin.mbg.model.OmsOrder;
 import com.zzy.malladmin.service.OmsPortalOrderService;
@@ -50,14 +51,14 @@ public class OmsPortalOrderController {
     @ApiOperation("用户取消订单")
     @RequestMapping(value = "/cancel/userDo", method = RequestMethod.POST)
     public CommonResult cancelUserDo(@RequestParam("orderId") Long orderId) {
-        int count = portalOrderService.cancelUserDo(orderId);
-        return CommonResultAssert.deal(count);
+        portalOrderService.cancelUserDo(orderId);
+        return CommonResult.success();
     }
 
 
     @ApiOperation("用户确认收货")
-    @RequestMapping(value = "/confirm", method = RequestMethod.POST)
-    public CommonResult confirm(@RequestParam("orderId") Long orderId) {
+    @RequestMapping(value = "/confirmReceiveOrder", method = RequestMethod.POST)
+    public CommonResult confirmReceiveOrder(@RequestParam("orderId") Long orderId) {
         int count = portalOrderService.confirm(orderId);
         return CommonResultAssert.deal(count);
     }
@@ -72,9 +73,9 @@ public class OmsPortalOrderController {
     @ApiOperation("根据ID获取订单详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CommonResult detail(@PathVariable("id") Long id) {
-        OmsOrder order = portalOrderService.detail(id);
-        if (order != null) {
-            return CommonResult.success(order);
+        OmsOrderDetail orderDetail = portalOrderService.detail(id);
+        if (orderDetail != null) {
+            return CommonResult.success(orderDetail);
         } else {
             return CommonResult.failed("未查到此订单");
         }

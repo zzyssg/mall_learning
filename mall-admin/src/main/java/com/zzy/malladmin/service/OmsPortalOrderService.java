@@ -1,6 +1,7 @@
 package com.zzy.malladmin.service;
 
 import com.zzy.malladmin.dto.ConfirmOrderResult;
+import com.zzy.malladmin.dto.OmsOrderDetail;
 import com.zzy.malladmin.dto.OmsOrderParam;
 import com.zzy.malladmin.mbg.model.OmsOrder;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,13 +20,13 @@ public interface OmsPortalOrderService {
 
     void cancelTimeOut();
 
-    int cancelUserDo(Long orderId);
+    void cancelUserDo(Long orderId);
 
     int confirm(Long orderId);
 
     int delete(Long orderId);
 
-    OmsOrder detail(Long id);
+    OmsOrderDetail detail(Long id);
 
     ConfirmOrderResult generateConfirmOrder(List<Long> cartIds);
 

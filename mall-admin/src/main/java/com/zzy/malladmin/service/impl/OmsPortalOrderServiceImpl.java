@@ -3,24 +3,24 @@ package com.zzy.malladmin.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.zzy.malladmin.dao.OmsOrderDao;
 import com.zzy.malladmin.dao.OmsOrderItemDao;
+import com.zzy.malladmin.dao.OmsPortalOrderDao;
 import com.zzy.malladmin.dto.CartPromotionItem;
 import com.zzy.malladmin.dto.ConfirmOrderResult;
+import com.zzy.malladmin.dto.OmsOrderDetail;
 import com.zzy.malladmin.dto.OmsOrderParam;
 import com.zzy.malladmin.exception.Assert;
-import com.zzy.malladmin.mbg.mapper.OmsOrderMapper;
-import com.zzy.malladmin.mbg.mapper.PmsSkuStockMapper;
-import com.zzy.malladmin.mbg.mapper.UmsIntegrationConsumeSettingMapper;
+import com.zzy.malladmin.mbg.mapper.*;
 import com.zzy.malladmin.mbg.model.*;
 import com.zzy.malladmin.service.OmsCartItemService;
 import com.zzy.malladmin.service.OmsPortalOrderService;
 import com.zzy.malladmin.service.RedisService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -47,7 +47,18 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     OmsOrderMapper orderMapper;
 
     @Autowired
+    OmsOrderItemMapper orderItemMapper;
+
+    @Autowired
+    OmsOrderOperateHistoryMapper orderOperateHistoryMapper;
+
+    @Autowired
     PmsSkuStockMapper skuStockMapper;
+
+    @Autowired
+    OmsPortalOrderDao portalOrderDao;
+
+
 
     @Autowired
     UmsIntegrationConsumeSettingMapper integrationConsumeSettingMapper;
@@ -81,19 +92,32 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         cancel(id);
     }
 
-    //用户手动取消订单
+    //用户手动取消订单 :1、修改订单状态 2、释放锁定的库存 3、返还积分、恢复优惠券未使用状态
     @Override
-    public int cancelUserDo(Long orderId) {
+    public void cancelUserDo(Long orderId) {
+        //1、修改订单状态
         OmsOrder order = new OmsOrder();
         order.setDeleteStatus(1);
-        //设为无效订单
-        order.setStatus(5);
+        order.setStatus(4);
+        order.setModifyTime(new Date());
         //TODO 获取用户信息
         Long memberId = 1L;
         OmsOrderExample orderExample = new OmsOrderExample();
         orderExample.createCriteria().andIdEqualTo(orderId).andMemberIdEqualTo(memberId).andDeleteStatusEqualTo(0);
         int count = orderMapper.updateByExampleSelective(order, orderExample);
-        return count;
+        //2、释放锁定库存
+        OmsOrderItemExample orItemExample = new OmsOrderItemExample();
+        orItemExample.createCriteria().andOrderIdEqualTo(orderId);
+        List<OmsOrderItem> orderItemList = orderItemMapper.selectByExample(orItemExample);
+        releaseSkuLockStock(orderItemList);
+        //3、返还积分 TODO memberService
+        //4、TODO 恢复优惠券未使用状态
+
+    }
+
+    //将库存加回去
+    private void releaseSkuLockStock(List<OmsOrderItem> orderItemList) {
+        portalOrderDao.releaseSkuLockStock(orderItemList);
     }
 
     @Override
@@ -103,18 +127,45 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         order.setStatus(3);
         order.setId(orderId);
         order.setModifyTime(new Date());
+        //TODO 每一个动作对应的关键字段：收货时间
+        order.setReceiveTime(new Date());
         int count = orderMapper.updateByPrimaryKeySelective(order);
         return count;
     }
 
     @Override
     public int delete(Long orderId) {
-        return orderMapper.deleteByPrimaryKey(orderId);
+        //有些订单不能删除：别人的、订单状态不为 status=3或者4
+        OmsOrder order = orderMapper.selectByPrimaryKey(orderId);
+        if (order.getStatus() == 3 || order.getStatus() == 4) {
+            OmsOrder deleteOrder = new OmsOrder();
+            deleteOrder.setDeleteStatus(1);
+            deleteOrder.setId(orderId);
+            return orderMapper.updateByPrimaryKeySelective(deleteOrder);
+        } else {
+            Assert.fail("只能删除已完成或者无效的订单");
+        }
+        return -1;
     }
 
     @Override
-    public OmsOrder detail(Long id) {
-        return orderMapper.selectByPrimaryKey(id);
+    public OmsOrderDetail detail(Long id) {
+        //OmsOrder + OrderItemList + OrderOperateHistory
+        OmsOrderDetail res = new OmsOrderDetail();
+        //OmsOrder
+        OmsOrder order = orderMapper.selectByPrimaryKey(id);
+        BeanUtils.copyProperties(order, res);
+        //OrderItemList
+        OmsOrderItemExample itemExample = new OmsOrderItemExample();
+        itemExample.createCriteria().andOrderIdEqualTo(id);
+        List<OmsOrderItem> orderItemList = orderItemMapper.selectByExample(itemExample);
+        res.setOrderItemList(orderItemList);
+        //OrderItemList
+        OmsOrderOperateHistoryExample operateHistoryExample = new OmsOrderOperateHistoryExample();
+        operateHistoryExample.createCriteria().andOrderIdEqualTo(id);
+        List<OmsOrderOperateHistory> orderOperateHistoryList = orderOperateHistoryMapper.selectByExample(operateHistoryExample);
+        res.setOrderOperateHistoryList(orderOperateHistoryList);
+        return res;
     }
 
     @Override
@@ -134,7 +185,7 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         //计算总金额、活动优惠、应付金额
         ConfirmOrderResult.CalcAmount calcAmount = calCartAmount(cartPromotionItems);
         result.setCalcAmount(calcAmount);
-        return null;
+        return result;
     }
 
     private ConfirmOrderResult.CalcAmount calCartAmount(List<CartPromotionItem> cartPromotionItems) {
@@ -442,6 +493,15 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
 
     @Override
     public Integer paySuccessCallback(Long orderId, Integer payType) {
-        return null;
+        //更新order
+        OmsOrder order = new OmsOrder();
+        order.setId(orderId);
+        order.setModifyTime(new Date());
+        order.setPayType(payType);
+        orderMapper.updateByPrimaryKeySelective(order);
+        //更细sku的stock和lock_stock
+        OmsOrderDetail detail = orderDao.detail(orderId);
+        int count = portalOrderDao.batchUpdate(detail.getOrderItemList());
+        return count;
     }
 }
