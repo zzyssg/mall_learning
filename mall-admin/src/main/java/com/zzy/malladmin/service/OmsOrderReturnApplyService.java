@@ -3,7 +3,6 @@ package com.zzy.malladmin.service;
 import com.zzy.malladmin.dto.OmsOrderReturnApplyQueryParam;
 import com.zzy.malladmin.dto.OmsUpdateStatusParam;
 import com.zzy.malladmin.mbg.model.OmsOrderReturnApply;
-import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

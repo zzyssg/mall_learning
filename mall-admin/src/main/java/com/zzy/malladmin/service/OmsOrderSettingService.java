@@ -2,7 +2,6 @@ package com.zzy.malladmin.service;
 
 import com.zzy.malladmin.dto.OrderSettingParam;
 import com.zzy.malladmin.mbg.model.OmsOrderSetting;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
 * @author zhangzheyuan

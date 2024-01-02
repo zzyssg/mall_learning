@@ -25,7 +25,7 @@ import java.util.Map;
  * @create: 2023-12-09
  */
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/portalOrder")
 @Api(tags = "OmsPortalOrderController")
 @Tag(name = "OmsPortalOrderController", description = "订单管理：下订单、根据购物车生成确认信息等")
 public class OmsPortalOrderController {

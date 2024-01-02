@@ -8,6 +8,7 @@ import com.zzy.malladmin.model.PromotionProduct;
 import com.zzy.malladmin.service.OmsPromotionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
  * @author: zzy
  * @create: 2023-12-16
  */
+@Service
 public class OmsPromotionServiceImpl implements OmsPromotionService {
 
     @Autowired

@@ -2,6 +2,7 @@ package com.zzy.malladmin.dao;
 
 import com.zzy.malladmin.mbg.model.UmsResource;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

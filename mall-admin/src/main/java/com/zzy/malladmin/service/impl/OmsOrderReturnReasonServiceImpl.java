@@ -8,6 +8,7 @@ import com.zzy.malladmin.mbg.model.OmsOrderReturnReasonExample;
 import com.zzy.malladmin.service.OmsOrderReturnReasonService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
  * @author: zzy
  * @create: 2023-11-27
  */
+@Service
 public class OmsOrderReturnReasonServiceImpl implements OmsOrderReturnReasonService {
     @Autowired
     OmsOrderReturnReasonMapper returnReasonMapper;

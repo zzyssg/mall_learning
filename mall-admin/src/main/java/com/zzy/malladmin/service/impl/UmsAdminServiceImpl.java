@@ -181,6 +181,9 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             //判断账号密码
             UserDetails userDetails = loadUserDetailByUsername(umsAdminLoginParam.getUsername());
 //            UserDetails userDetails = getAdminByUsername1(umsAdminLoginParam.getUsername());
+            System.out.println(passwordEncoder.encode(umsAdminLoginParam.getPassword()));
+            System.out.println(passwordEncoder.encode("116924"));
+            System.out.println(userDetails.getPassword());
             if (!passwordEncoder.matches(umsAdminLoginParam.getPassword(), userDetails.getPassword())) {
                 Assert.fail("密码错误");
             }
@@ -233,6 +236,21 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             return resourceList;
         }
         //缓存中没有，从库中获取  adminRoleRelationDao adminId --> roleId --> resourceList
+//        resourceList = new ArrayList<>();
+//        UmsResource umsResource1 = new UmsResource();
+//        umsResource1.setCreateTime(new Date());
+//        umsResource1.setId(25L);
+//        umsResource1.setCategoryId(4L);
+//        umsResource1.setName("后台用户管理");
+//        umsResource1.setUrl("/admin/**");
+//        UmsResource umsResource2 = new UmsResource();
+//        umsResource2.setCreateTime(new Date());
+//        umsResource2.setId(26L);
+//        umsResource2.setName("后台用户角色管理");
+//        umsResource2.setUrl("/role/**");
+//        umsResource2.setCategoryId(4L);
+//        resourceList.add(umsResource1);
+//        resourceList.add(umsResource2);
         resourceList = adminRoleRelationDao.getResourceList(adminId);
         //设置在缓存里 TODO
         getCacheService().setResourceList(adminId, resourceList);

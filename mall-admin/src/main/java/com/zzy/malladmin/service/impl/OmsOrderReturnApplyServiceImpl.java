@@ -9,6 +9,7 @@ import com.zzy.malladmin.mbg.model.OmsOrderReturnApply;
 import com.zzy.malladmin.mbg.model.OmsOrderReturnApplyExample;
 import com.zzy.malladmin.service.OmsOrderReturnApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  * @author: zzy
  * @create: 2023-11-26
  */
+@Service
 public class OmsOrderReturnApplyServiceImpl implements OmsOrderReturnApplyService {
     @Autowired
     OmsOrderReturnApplyMapper returnApplyMapper;

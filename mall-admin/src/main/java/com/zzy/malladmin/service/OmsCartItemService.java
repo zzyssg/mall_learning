@@ -3,7 +3,7 @@ package com.zzy.malladmin.service;
 import com.zzy.malladmin.dto.CartProduct;
 import com.zzy.malladmin.dto.CartPromotionItem;
 import com.zzy.malladmin.mbg.model.OmsCartItem;
-import com.baomidou.mybatisplus.extension.service.IService;
+
 
 import java.util.List;
 
